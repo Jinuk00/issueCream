@@ -1,12 +1,13 @@
 package com.clova.issuecream.web.controller;
 
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class WebController {
-    @GetMapping("/")
+public class WebController implements ErrorController {
+    @GetMapping(value = {"/", "/error"})
     public String reactRoot() {
-        return "/index.html";
+        return "index.html";
     }
 }
