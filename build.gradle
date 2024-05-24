@@ -9,6 +9,7 @@ plugins {
     id 'org.springframework.boot' version '3.1.11'
     id 'io.spring.dependency-management' version '1.1.4'
     id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+    id "com.github.node-gradle.node" version "7.0.2"
 }
 
 group = 'com.clova'
@@ -78,4 +79,50 @@ compileQuerydsl {
 // gradle clean 시에 QClass 디렉토리 삭제
 clean {
     delete file(querydslDir)
+}
+
+//react 빌드시 같이넣기
+def reactAppDir = "$projectDir/src/main/frontend/issue-cream-web"
+
+sourceSets {
+    main {
+        resources {
+            srcDirs = ["$projectDir/src/main/resources"]
+        }
+    }
+}
+
+processResources {
+    dependsOn "copyReactFile"
+}
+
+task installReact(type: Exec) {
+    workingDir "$reactAppDir"
+    inputs.dir "$reactAppDir"
+    group = BasePlugin.BUILD_GROUP
+    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+        commandLine "npm.cmd", "audit", "fix"
+        commandLine 'npm.cmd', 'install'
+    } else {
+        commandLine "npm", "audit", "fix"
+        commandLine 'npm', 'install'
+    }
+}
+
+task buildReact(type: Exec) {
+    dependsOn "installReact"
+    workingDir "$reactAppDir"
+    inputs.dir "$reactAppDir"
+    group = BasePlugin.BUILD_GROUP
+    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+        commandLine "npm.cmd", "run-script", "build"
+    } else {
+        commandLine "npm", "run-script", "build"
+    }
+}
+
+task copyReactFile(type: Copy) {
+    dependsOn "buildReact"
+    from "$reactAppDir/build"
+    into "$buildDir/resources/main/static"
 }
