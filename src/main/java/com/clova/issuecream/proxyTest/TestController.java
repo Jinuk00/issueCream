@@ -12,4 +12,9 @@ public class TestController {
     public String testProxy2() {
         return "성공2";
     }
+
+    @PostMapping("/api/test/proxy")
+    public String testProxy3() {
+        return "성공3";
+    }
 }
