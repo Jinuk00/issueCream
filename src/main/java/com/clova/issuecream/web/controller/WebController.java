@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class WebController {
-//    @GetMapping("/")
-//    public String reactRoot() {
-//        return "/index.html";
-//    }
+    @GetMapping("/")
+    public String reactRoot() {
+        return "/index.html";
+    }
 }

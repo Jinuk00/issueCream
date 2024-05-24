@@ -15,7 +15,7 @@ function TestProxy(){
 
     return (
             <div>
-                백엔드 데이터 : {hello}
+                백엔드 데이터2 : {hello}
             </div>
     );
 }
