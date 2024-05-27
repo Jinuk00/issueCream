@@ -3,12 +3,21 @@ import axios from "axios";
 function SignUp(){
 
     const kakaoLogin = ()=>{
-        axios.get("/oauth/signup/kakao");
+        // axios.get("/oauth/signup/kakao");
+        axios.get('/kakao/login')
+                .then((res)=>{
+                    console.log(res);
+                })
     }
+
+    const kakaoOauthUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.REACT_APP_OAUTH_KAKAO_API_KEY}&redirect_uri=${process.env.REACT_APP_OAUTH_KAKAO_REDIRECT_URI}`
 
     return(
             <>
-                <img src="/images/kakao_login_medium_narrow.png" onClick={kakaoLogin}/>
+                <a href={kakaoOauthUrl}>
+                    <img src="/images/kakao_login_medium_narrow.png" onClick={kakaoLogin}/>
+                </a>
+                <input type="hidden" value='%REACT_APP_TEST_KEY%'/>
             </>
     )
 }
