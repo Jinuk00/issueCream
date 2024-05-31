@@ -1,10 +1,8 @@
 package com.clova.issuecream.login.entity;
 
 import com.clova.issuecream.login.enums.Role;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.clova.issuecream.login.enums.RoleConverter;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -35,6 +33,7 @@ public class Member {
     String email;
     @Column(name = "role")
     @Comment("권한")
+    @Convert(converter = RoleConverter.class)
     Role role;
 
 
