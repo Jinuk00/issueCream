@@ -66,7 +66,7 @@ public class SecurityConfig {
                                         .userInfoEndpoint(userInfoEndpointConfig ->
                                                 userInfoEndpointConfig.userService(customOAuth2UserService))
                                         .successHandler(customSuccessHandler)
-                                        .loginPage("/signUp")
+                                        .loginPage("/")
                 );
 //                .addFilterBefore(new JWTFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class)
 
