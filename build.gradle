@@ -65,35 +65,6 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-//// querydsl에서 사용할 경로 설정
-//def querydslDir = "src/main/generated"
-//// querydsl QClass 파일 생성 위치를 지정
-//tasks.withType(JavaCompile) {
-//    options.getGeneratedSourceOutputDirectory().set(file(querydslDir))
-//}
-//
-//querydsl {
-//    jpa = true
-//    querydslSourcesDir = querydslDir
-//}
-//
-//// java source set 에 querydsl QClass 위치 추가
-//sourceSets {
-//    main.java.srcDirs += [ querydslDir ]
-//}
-//
-//configurations {
-//    querydsl.extendsFrom compileClasspath
-//}
-//
-//compileQuerydsl {
-//    options.annotationProcessorPath = configurations.querydsl
-//}
-//// gradle clean 시에 QClass 디렉토리 삭제
-//clean {
-//    delete file(querydslDir)
-//}
-
 //react 빌드시 같이넣기
 def reactAppDir = "$projectDir/src/main/frontend/issue-cream-web"
 
