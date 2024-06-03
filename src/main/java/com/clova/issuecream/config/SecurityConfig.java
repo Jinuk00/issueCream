@@ -40,6 +40,8 @@ public class SecurityConfig {
         return web -> web.ignoring()
                 // error endpoint를 열어줘야 함, favicon.ico 추가!
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/error"), AntPathRequestMatcher.antMatcher("/favicon.ico"),
+                        AntPathRequestMatcher.antMatcher("/index.html"),
+                        AntPathRequestMatcher.antMatcher("/js/**"),
                         PathRequest.toStaticResources().atCommonLocations());
     }
 
