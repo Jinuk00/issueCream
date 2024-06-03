@@ -38,3 +38,4 @@ out/
 
 
 /src/main/resources/application-keySet.yml
+/src/main/generated/

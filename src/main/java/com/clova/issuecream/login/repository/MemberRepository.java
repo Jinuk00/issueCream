@@ -1,9 +1,7 @@
 package com.clova.issuecream.login.repository;
 
 import com.clova.issuecream.login.entity.Member;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public interface MemberRepository {
-    Member findByEmailAndProvider(String emial, String provider);
+public interface MemberRepository extends JpaRepository<Member,Long> {
 }

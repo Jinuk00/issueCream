@@ -11,7 +11,7 @@ import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
-@Table(name = "MEMBER")
+@Table(name = "member")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicUpdate
@@ -20,7 +20,7 @@ public class Member {
     @Id
     @Column(name = "seq")
     @Comment("순번")
-    long seq;
+    Long seq;
 
     @Column(name = "name")
     @Comment("이름")
