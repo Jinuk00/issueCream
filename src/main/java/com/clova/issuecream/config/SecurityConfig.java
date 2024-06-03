@@ -6,6 +6,7 @@ import com.clova.issuecream.config.handler.CustomSuccessHandler;
 import com.clova.issuecream.config.service.CustomOAuth2UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -38,7 +39,8 @@ public class SecurityConfig {
     public WebSecurityCustomizer webSecurityCustomizer() { // security를 적용하지 않을 리소스
         return web -> web.ignoring()
                 // error endpoint를 열어줘야 함, favicon.ico 추가!
-                .requestMatchers("/error", "/favicon.ico","/index.html","/js/**");
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/error"), AntPathRequestMatcher.antMatcher("/favicon.ico"),
+                        PathRequest.toStaticResources().atCommonLocations());
     }
 
     @Bean
