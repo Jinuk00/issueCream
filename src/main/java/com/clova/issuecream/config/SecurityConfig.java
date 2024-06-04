@@ -60,7 +60,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request ->
                         request.requestMatchers(
                                         "/",
-                                        "/login/**"
+                                        "/login/**",
+                                        "/api/test/proxy",
+                                        "/test/proxy"
                                 ).permitAll()
                                 .anyRequest().authenticated()
                 )
@@ -71,9 +73,9 @@ public class SecurityConfig {
                                                 userInfoEndpointConfig.userService(customOAuth2UserService))
                                         .successHandler(customSuccessHandler)
                                         .loginPage("/")
-                );
-//                .addFilterBefore(new JWTFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class)
-
+                )
+                .addFilterBefore(new JWTFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class)
+        ;
         return http.build();
     }
 

@@ -10,7 +10,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public enum Role implements Constant{
-    USER("유저"),
+    USER("ROLE_USER"),
+    ADMIN("ROLE_ADMIN"),
     ;
 
     String code;

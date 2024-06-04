@@ -1,5 +1,6 @@
 package com.clova.issuecream.login.entity;
 
+import com.clova.issuecream.login.dto.MemberDto;
 import com.clova.issuecream.login.enums.Role;
 import com.clova.issuecream.login.enums.RoleConverter;
 import jakarta.persistence.*;
@@ -44,5 +45,12 @@ public class Member {
         this.username = username;
         this.email = email;
         this.role = role;
+    }
+
+    public MemberDto toDto() {
+        return MemberDto.builder()
+                .username(username).name(name)
+                .role(role.getCode())
+                .build();
     }
 }
