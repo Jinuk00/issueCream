@@ -4,7 +4,7 @@ function SignUp(){
 
     const kakaoLogin = ()=>{
         // axios.get("/oauth/signup/kakao");
-        axios.get('/kakao/login')
+        axios.get('/api/oauth2/authorization/kakao')
                 .then((res)=>{
                     console.log(res);
                 })
@@ -12,7 +12,7 @@ function SignUp(){
 
     // const kakaoOauthUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.REACT_APP_OAUTH_KAKAO_API_KEY}&redirect_uri=${process.env.REACT_APP_OAUTH_KAKAO_REDIRECT_URI}`
     // const kakaoOauthUrl = `http://localhost:8080/oauth2/authorization/kakao?redirect_uri=${process.env.REACT_APP_OAUTH_KAKAO_REDIRECT_URI}`
-    const kakaoOauthUrl = `http://localhost:8080/oauth2/authorization/kakao`
+    const kakaoOauthUrl = `${process.env.REACT_APP_BASE}/api/oauth2/authorization/kakao`
 
     return(
             <>
