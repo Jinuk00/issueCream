@@ -6,6 +6,7 @@ import com.clova.issuecream.config.handler.CustomSuccessHandler;
 import com.clova.issuecream.config.service.CustomOAuth2UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,6 +38,9 @@ public class SecurityConfig {
     private final CustomOAuth2UserService customOAuth2UserService;
     private final CustomSuccessHandler customSuccessHandler;
 
+    @Value("${spring.front-url}")
+    private String frontUrl;
+
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() { // security를 적용하지 않을 리소스
         return web -> web.ignoring()
@@ -65,9 +69,7 @@ public class SecurityConfig {
                         request.requestMatchers(
                                         "/",
                                         "/login/**",
-                                        "/logout",
                                         "/user/logout",
-                                        "/logout/**",
                                         "/api/test/proxy",
                                         "/test/proxy"
                                 ).permitAll()
@@ -135,7 +137,7 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedHeaders(Collections.singletonList("*"));
         config.setAllowedMethods(Collections.singletonList("*"));
-        config.setAllowedOriginPatterns(Collections.singletonList("http://localhost:3000")); // ⭐️ 허용할 origin
+        config.setAllowedOriginPatterns(Collections.singletonList(frontUrl)); // ⭐️ 허용할 origin
         config.setAllowCredentials(true);
         //exposed-headers 설정
         config.setExposedHeaders(Arrays.asList("Access-Control-Allow-Headers", "Authorization, x-xsrf-token, Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, " +
