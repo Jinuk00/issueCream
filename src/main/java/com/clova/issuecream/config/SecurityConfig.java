@@ -140,8 +140,8 @@ public class SecurityConfig {
         config.setAllowedOriginPatterns(Collections.singletonList(frontUrl)); // ⭐️ 허용할 origin
         config.setAllowCredentials(true);
         //exposed-headers 설정
-        config.setExposedHeaders(Arrays.asList("Access-Control-Allow-Headers", "Authorization, x-xsrf-token, Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, " +
-                "Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers","authorization", "refreshToken","accessToken","access"));
+        config.setExposedHeaders(Arrays.asList("Access-Control-Allow-Headers", "Authorization, Accept, X-Requested-With, " +
+                "Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers","authorization", "refreshToken","access"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**",config);
         return source;

@@ -27,6 +27,12 @@ function Main() {
                 </div>
                 <div>
                     {
+                            localStorage.getItem("access") &&
+                            <div>
+                                <Link to='/check'>내정보</Link>
+                            </div>
+                    }
+                    {
                         localStorage.getItem("access") &&
                         <button onClick={logOut}>
                             로그아웃
