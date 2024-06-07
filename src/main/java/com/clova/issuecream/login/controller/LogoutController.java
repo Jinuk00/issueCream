@@ -23,7 +23,7 @@ public class LogoutController {
     private final RedisService redisService;
 
     //프론트 측에선 local storage에 존재하는 accessToken을 삭제 추가.
-    @PostMapping("/logout")
+    @PostMapping("/user/logout")
     public void logout(HttpServletRequest request, HttpServletResponse response) {
         Cookie[] cookies = request.getCookies();
         if(cookies == null) {

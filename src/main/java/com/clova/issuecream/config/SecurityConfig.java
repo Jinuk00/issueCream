@@ -66,6 +66,8 @@ public class SecurityConfig {
                                         "/",
                                         "/login/**",
                                         "/logout",
+                                        "/user/logout",
+                                        "/logout/**",
                                         "/api/test/proxy",
                                         "/test/proxy"
                                 ).permitAll()

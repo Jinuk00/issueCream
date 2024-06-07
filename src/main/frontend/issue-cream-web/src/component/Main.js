@@ -1,14 +1,19 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 
 function Main() {
+    const navigate = useNavigate();
 
     const logOut = ()=>{
-        axios.post("/api/logout")
+        axios.post('/api/user/logout')
                 .then((res)=>{
                     console.log(res);
-                    // navigator("/",{replace: true});
-                })
+                    localStorage.removeItem("access");
+                    alert("로그아웃 됐습니다.");
+                    navigate("/");
+                }).catch((error)=>{
+            console.log(error);
+        })
     }
 
     return (
@@ -20,9 +25,14 @@ function Main() {
                 <div>
                     <Link to='/signUp'>회원가입</Link>
                 </div>
-                <button onClick={logOut}>
-                    로그아웃
-                </button>
+                <div>
+                    {
+                        localStorage.getItem("access") &&
+                        <button onClick={logOut}>
+                            로그아웃
+                        </button>
+                    }
+                </div>
             </>
     );
 }
