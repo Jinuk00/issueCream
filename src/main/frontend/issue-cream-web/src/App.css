@@ -44,7 +44,6 @@
 .center{
   text-align: center;
   background-color: white;
-  padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 25rem;
@@ -55,7 +54,10 @@
   align-items: center;
   text-align: center;
   background-color: #D5EAF2;
-  height : 100%;
+}
+
+.main_padding {
+  padding: 2rem;
 }
 
 .mr2 {
@@ -80,5 +82,6 @@
   background: #CCECFF;
   padding: 0.2rem;
   border-radius: 0.2rem;
+  width: 100%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }

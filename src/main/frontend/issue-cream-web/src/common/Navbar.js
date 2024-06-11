@@ -6,6 +6,7 @@ function Navbar() {
 
     return (
             <>
+
                 <div>
                     <PageHeader/>
                     <IssueBanner/>

@@ -6,7 +6,7 @@ function LoginPage(){
     return(
       <>
           <div className="background">
-          <div className="center">
+          <div className="center main_padding">
                 <div style={{marginTop:'5rem'}}>
                   <img src="/images/clova.png" alt = "Clova" style={{ width: '300px' }}/>
               </div>
