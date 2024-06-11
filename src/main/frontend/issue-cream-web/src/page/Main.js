@@ -19,11 +19,6 @@ function Main() {
 
     return (
             <>
-                <div className="background">
-                    <div className="center">
-                        <div>
-                            <Navbar/>
-                        </div>
                         <div>메인</div>
                         <div>
                             <Link to='/test'>테스트</Link>
@@ -45,8 +40,6 @@ function Main() {
                                 </button>
                             }
                         </div>
-                    </div>
-                </div>
             </>
     );
 }

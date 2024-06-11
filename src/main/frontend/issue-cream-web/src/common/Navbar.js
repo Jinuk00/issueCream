@@ -6,12 +6,9 @@ function Navbar() {
 
     return (
             <>
-
-                <div>
                     <PageHeader/>
                     <IssueBanner/>
                     <Category/>
-                </div>
             </>
     );
 }
