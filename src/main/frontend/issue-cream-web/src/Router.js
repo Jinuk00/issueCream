@@ -12,18 +12,18 @@ const Router = () => {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<LoginPage/>}/>
-                    <Route element={<Navbar/>}>
                         <Route path="/main" element={<Main/>}/>
                         <Route path="/test" element={<TestProxy/>}/>
                         <Route path="/login" element={<LoginPage/>}/>
                         <Route path="/signUp" element={<SignUp/>}></Route>
                         <Route path="/authProcess" element={<LoginSuccess/>}></Route>
                         <Route path="/check" element={<Check/>}></Route>
-                    </Route>
                 </Routes>
             </BrowserRouter>
             </>
     );
 };
+/*
+* <Route element={<Navbar/>}> */
 
 export default Router;

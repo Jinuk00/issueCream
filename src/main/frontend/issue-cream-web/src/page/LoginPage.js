@@ -10,13 +10,13 @@ function LoginPage(){
                 <div style={{marginTop:'5rem'}}>
                   <img src="/images/clova.png" alt = "Clova" style={{ width: '300px' }}/>
               </div>
-              <div style={{marginTop:'3rem'}}>
+              <div style={{marginTop:'4rem'}}>
                   <img src="/images/main_logo.png" alt="Logo" style={{ width: '300px' }} />
               </div>
-              <div style={{marginTop:'5rem'}}>
+              <div style={{marginTop:'4rem'}}>
                   AI 기반 실시간 뉴스레터 제공 서비스 '이슈크림'
               </div>
-              <div style={{marginTop:"5rem"}}>
+              <div style={{marginTop:"6rem"}}>
                   <KakaoLogin/>
               </div>
               <div className="mr2">

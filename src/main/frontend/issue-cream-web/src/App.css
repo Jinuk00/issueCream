@@ -47,15 +47,16 @@
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 21rem;
+  width: 25rem;
   margin: auto;
+  height : 100%;
 }
 .background{
   align-items: center;
   text-align: center;
   background-color: #D5EAF2;
+  height : 100%;
 }
-
 
 .mr2 {
   margin: 2rem;
@@ -76,5 +77,8 @@
 }
 
 .base-blue{
-  background: #CCECFF
+  background: #CCECFF;
+  padding: 0.2rem;
+  border-radius: 0.2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }

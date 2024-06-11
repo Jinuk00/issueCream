@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 function Category(){
     return (
         <div className="flex">
-            <div className="base-blue mr_auto">
+            <div className="base-blue" style={{marginBottom: '2rem'}}>
                 <Link to={"/category/it"} className="link category">IT</Link>
                 <Link to={"/category/it"} className="link category">시사</Link>
                 <Link to={"/category/it"} className="link category">미디어</Link>

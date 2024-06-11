@@ -1,6 +1,9 @@
 function IssueBanner(){
-    return(
-            <img src="/images/exampleImg.png" style={{width:"10rem",height:"10rem",objectFit:"cover"}}/>
+    return (
+
+        <div className="flex" style={{marginBottom: '2rem'}}>
+            <img src="/images/exampleImg.png" style={{width: "100%", objectFit: "cover"}}/>
+        </div>
     )
 }
 
