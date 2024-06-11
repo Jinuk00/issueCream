@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -41,9 +42,20 @@
   display: flex;
 }
 .center{
-  margin: auto;
   text-align: center;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 21rem;
+  margin: auto;
 }
+.background{
+  align-items: center;
+  text-align: center;
+  background-color: #D5EAF2;
+}
+
 
 .mr2 {
   margin: 2rem;

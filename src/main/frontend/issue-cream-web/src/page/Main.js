@@ -18,6 +18,9 @@ function Main() {
 
     return (
             <>
+                <div className="background">
+                    <div className="center">
+
                 <div>메인</div>
                 <div>
                     <Link to='/test'>테스트</Link>
@@ -38,6 +41,8 @@ function Main() {
                             로그아웃
                         </button>
                     }
+                </div>
+                    </div>
                 </div>
             </>
     );
