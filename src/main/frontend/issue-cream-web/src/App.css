@@ -49,3 +49,20 @@
   margin: 2rem;
 }
 
+.mr_auto {
+  margin: auto;
+}
+
+.link{
+  text-decoration: none;
+  color: black;
+}
+
+.category{
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.base-blue{
+  background: #CCECFF
+}

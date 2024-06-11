@@ -1,6 +1,8 @@
 import KakaoLogin from "../common/KakaoLogin";
+import {Link} from "react-router-dom";
 
 function LoginPage(){
+
     return(
       <>
           <div className="center">
@@ -17,9 +19,9 @@ function LoginPage(){
                   <KakaoLogin/>
               </div>
               <div className="mr2">
-                  <span style={{background:'#CCECFF', padding:"0.9rem",borderRadius: '5px', cursor: "pointer"}}>
+                  <Link to='/main' style={{background:'#CCECFF', padding:"0.9rem",borderRadius: '5px', cursor: "pointer", textDecoration:"none",color:"#000000"}}>
                       로그인 정보 없이 시작하기
-                  </span>
+                  </Link>
               </div>
           </div>
       </>

@@ -4,20 +4,22 @@ import Main from "./page/Main";
 import SignUp from "./login/SignUp";
 import Check from "./login/Check";
 import LoginSuccess from "./login/LoginSuccess";
-import NavBar from "./common/NavBar";
 import LoginPage from "./page/LoginPage";
+import Navbar from "./common/Navbar";
 const Router = () => {
     return (
             <>
-            {/*<NavBar/>*/}
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Main/>}/>
-                    <Route path="/test" element={<TestProxy/>}/>
-                    <Route path="/login" element={<LoginPage/>}/>
-                    <Route path="/signUp" element={<SignUp/>}></Route>
-                    <Route path="/authProcess" element={<LoginSuccess/>}></Route>
-                    <Route path="/check" element={<Check/>}></Route>
+                    <Route path="/" element={<LoginPage/>}/>
+                    <Route element={<Navbar/>}>
+                        <Route path="/main" element={<Main/>}/>
+                        <Route path="/test" element={<TestProxy/>}/>
+                        <Route path="/login" element={<LoginPage/>}/>
+                        <Route path="/signUp" element={<SignUp/>}></Route>
+                        <Route path="/authProcess" element={<LoginSuccess/>}></Route>
+                        <Route path="/check" element={<Check/>}></Route>
+                    </Route>
                 </Routes>
             </BrowserRouter>
             </>
