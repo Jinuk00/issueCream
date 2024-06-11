@@ -4,11 +4,11 @@ function Category(){
     return (
         <div className="flex">
             <div className="base-blue" style={{marginBottom: '2rem'}}>
-                <Link to={"/category/it"} className="link category">IT</Link>
-                <Link to={"/category/it"} className="link category">시사</Link>
-                <Link to={"/category/it"} className="link category">미디어</Link>
-                <Link to={"/category/it"} className="link category">스포츠</Link>
-                <Link to={"/category/it"} className="link category">경제</Link>
+                <Link to={"/main/it"} className="link category">IT</Link>
+                <Link to={"/main/preview"} className="link category">시사</Link>
+                <Link to={"/main/media"} className="link category">미디어</Link>
+                <Link to={"/main/sports"} className="link category">스포츠</Link>
+                <Link to={"/main/economy"} className="link category">경제</Link>
             </div>
         </div>
     );

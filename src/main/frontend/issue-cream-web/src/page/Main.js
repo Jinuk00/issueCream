@@ -18,29 +18,32 @@ function Main() {
     }
 
     return (
-            <>
-                        <div>메인</div>
-                        <div>
-                            <Link to='/test'>테스트</Link>
-                        </div>
-                        <div>
-                            <Link to='/signUp'>회원가입</Link>
-                        </div>
-                        <div>
-                            {
-                                localStorage.getItem("access") &&
-                                <div>
-                                    <Link to='/check'>내정보</Link>
-                                </div>
-                            }
-                            {
-                                localStorage.getItem("access") &&
-                                <button onClick={logOut}>
-                                    로그아웃
-                                </button>
-                            }
-                        </div>
-            </>
+        <>
+            <div>메인</div>
+            <div>
+                <Link to='/test'>테스트</Link>
+            </div>
+            <div>
+                <Link to='/signUp'>회원가입</Link>
+            </div>
+            <div>
+                <Link to='/news'>기사</Link>
+            </div>
+            <div>
+                {
+                    localStorage.getItem("access") &&
+                    <div>
+                        <Link to='/check'>내정보</Link>
+                    </div>
+                }
+                {
+                    localStorage.getItem("access") &&
+                    <button onClick={logOut}>
+                        로그아웃
+                    </button>
+                }
+            </div>
+        </>
     );
 }
 

@@ -17,7 +17,7 @@ function LoginPage(){
               <div style={{marginTop:"5rem"}}>
                   <KakaoLogin/>
               </div>
-              <div  style={{paddingTop:"3rem", paddingBottom:"6rem"}}>
+              <div  style={{marginTop:"3rem", paddingBottom:"6rem"}}>
                   <Link to='/main' style={{ background:'#CCECFF', paddingLeft:"25px", paddingRight:"25px" , paddingTop:"13px", paddingBottom:"13px",borderRadius: '5px', cursor: "pointer", textDecoration:"none",color:"#000000"}}>
                       로그인 없이 시작하기
                   </Link>
