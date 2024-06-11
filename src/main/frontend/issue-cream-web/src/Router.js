@@ -1,11 +1,11 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import TestProxy from "./test/TestProxy";
-import Main from "./component/Main";
+import Main from "./page/Main";
 import SignUp from "./login/SignUp";
 import Check from "./login/Check";
 import LoginSuccess from "./login/LoginSuccess";
 import NavBar from "./common/NavBar";
-import LoginPage from "./login/LoginPage";
+import LoginPage from "./page/LoginPage";
 const Router = () => {
     return (
             <>

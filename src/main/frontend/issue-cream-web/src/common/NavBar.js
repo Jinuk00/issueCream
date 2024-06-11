@@ -1,4 +1,4 @@
-import NavLogo from "../component/NavLogo";
+import NavLogo from "../page/NavLogo";
 
 function NavBar() {
 

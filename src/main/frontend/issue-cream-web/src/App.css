@@ -38,5 +38,14 @@
 }
 
 .flex {
-  dispaly: flex;
+  display: flex;
 }
+.center{
+  margin: auto;
+  text-align: center;
+}
+
+.mr2 {
+  margin: 2rem;
+}
+
