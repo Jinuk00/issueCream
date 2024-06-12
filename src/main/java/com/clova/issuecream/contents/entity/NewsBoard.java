@@ -1,9 +1,8 @@
 package com.clova.issuecream.contents.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.clova.issuecream.contents.enums.CategoryCode;
+import com.clova.issuecream.contents.enums.CategoryCodeConverter;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.DynamicUpdate;
@@ -21,6 +20,11 @@ public class NewsBoard {
     @Column(name = "id")
     @Comment("id값")
     Long id;
+
+    @Column(name = "category_cd")
+    @Comment("카테고리 코드")
+    @Convert(converter = CategoryCodeConverter.class)
+    CategoryCode categoryCode;
 
     @Column(name = "board_nm")
     @Comment("뉴스 제목")
