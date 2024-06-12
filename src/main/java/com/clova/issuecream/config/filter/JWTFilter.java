@@ -66,11 +66,11 @@ public class JWTFilter extends OncePerRequestFilter {
         }
 
         // 사용자명과 권한을 accessToken에서 추출
-        String username = jwtUtil.getUsername(originToken);
+        String email = jwtUtil.getEmail(originToken);
         String role = jwtUtil.getRole(originToken);
 
         MemberDto userDTO = MemberDto.builder()
-                .name(username).role(role)
+                .email(email).role(role)
                 .build();
 
         CustomOAuth2User customOAuth2User = new CustomOAuth2User(userDTO);

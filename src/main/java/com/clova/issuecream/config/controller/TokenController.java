@@ -57,21 +57,21 @@ public class TokenController {
         }
 
         // 새로운 Token을 만들기 위해 준비
-        String username = jwtUtil.getUsername(refresh);
+        String email = jwtUtil.getEmail(refresh);
         String role = jwtUtil.getRole(refresh);
 
         // Redis내에 존재하는 refreshToken인지 확인
-        String redisRefrshToken = redisService.getValues(username);
+        String redisRefrshToken = redisService.getValues(email);
         if(redisService.checkExistsValue(redisRefrshToken)) {
             return new ResponseEntity<>("no exists in redis refresh token", HttpStatus.BAD_REQUEST);
         }
 
         // 새로운 JWT Token 생성
-        String newAccessToken = jwtUtil.createJwt("access", username, role, 600000L);
-        String newRefreshToken = jwtUtil.createJwt("refresh", username, role, 86400000L);
+        String newAccessToken = jwtUtil.createJwt("access", email, role, 600000L);
+        String newRefreshToken = jwtUtil.createJwt("refresh", email, role, 86400000L);
 
         // update refreshToken to Redis
-        redisService.setValues(username, newRefreshToken, Duration.ofMillis(86400000L));
+        redisService.setValues(email, newRefreshToken, Duration.ofMillis(86400000L));
 
         // 응답
         response.setHeader("access", "Bearer " + newAccessToken);

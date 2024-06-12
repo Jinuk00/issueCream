@@ -6,7 +6,6 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,7 +45,7 @@ public class LogoutController {
             return;
         }
 
-        String key = jwtUtil.getUsername(refreshToken);
+        String key = jwtUtil.getEmail(refreshToken);
 
         if(redisService.getValues(key) == null) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);

@@ -26,7 +26,7 @@ const Router = () => {
                             <Route element={<Navbar/>}>
                                 <Route path="/main" element={<Main/>}/>
                                 <Route path="/login" element={<LoginPage/>}/>
-                                <Route path="/signUp" element={<SignUp/>}/>
+                                {/*<Route path="/signUp" element={<SignUp/>}/>*/}
                                 <Route path="/main/{}" element={<Check/>}/>
                             </Route>
                         </Routes>

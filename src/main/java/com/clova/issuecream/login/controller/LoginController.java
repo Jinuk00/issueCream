@@ -17,6 +17,6 @@ public class LoginController {
 
     @PostMapping(value = "/user/info")
     public String loginOAuth(@AuthenticationPrincipal CustomOAuth2User memberDto) {
-        return memberDto.getName();
+        return memberDto.getEmail();
     }
 }

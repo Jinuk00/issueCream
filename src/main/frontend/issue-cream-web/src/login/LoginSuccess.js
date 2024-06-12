@@ -12,7 +12,7 @@ function LoginSuccess(){
         if (accessToken) {
             localStorage.setItem("access", accessToken);
         }
-        navigate("/check");
+        navigate("/main");
     });
 }
 

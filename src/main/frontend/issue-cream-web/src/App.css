@@ -51,3 +51,11 @@
     border-top: 0.1rem solid #3A2A38;
     border-bottom: 0.1rem solid #3A2A38;
 }
+
+.btn{
+
+}
+
+.btn:hover{
+  cursor: pointer;
+}

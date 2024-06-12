@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const instance = axios.create({
-    baseURL:"/api",
+const axiosUtil = axios.create({
     headers: { 'Content-Type': 'application/json',
     'access':localStorage.getItem("access")},
     withCredentials: true,
@@ -9,3 +8,6 @@ const instance = axios.create({
 const axiosPost= async (url) => {
     return await axios.post(url);
 }
+
+
+export default axiosUtil;

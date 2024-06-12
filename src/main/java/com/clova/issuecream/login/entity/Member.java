@@ -49,7 +49,8 @@ public class Member {
 
     public MemberDto toDto() {
         return MemberDto.builder()
-                .username(username).name(name)
+                .name(name)
+                .email(email)
                 .role(role.getCode())
                 .build();
     }

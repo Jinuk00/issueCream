@@ -36,7 +36,8 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         CustomOAuth2User customUserDetail = (CustomOAuth2User) authentication.getPrincipal();
 
         // 토큰 생성시에 사용자명과 권한이 필요하니 준비하자
-        String username = customUserDetail.getName();
+//        String username = customUserDetail.getName();
+        String email = customUserDetail.getEmail();
 
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         Iterator<? extends GrantedAuthority> iterator = authorities.iterator();
@@ -44,11 +45,11 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         String role = auth.getAuthority();
 
         // accessToken과 refreshToken 생성
-        String accessToken = jwtUtil.createJwt("access", username, role, 60000L);
-        String refreshToken = jwtUtil.createJwt("refresh", username, role, 3600000L);
+        String accessToken = jwtUtil.createJwt("access", email, role, 3600000L);
+        String refreshToken = jwtUtil.createJwt("refresh", email, role, 7200000L);
 
         // redis에 insert (key = username / value = refreshToken)
-        redisService.setValues(username, refreshToken, Duration.ofMillis(3600000L)); //1시간 유효기간
+        redisService.setValues(email, refreshToken, Duration.ofMillis(7200000L)); //2시간 유효기간
 
         // 응답
 //        response.setHeader("Authorization", "Bearer " + accessToken);
