@@ -14,23 +14,23 @@ const Router = () => {
     return (
             <div className="background">
                 <div className="center">
-                <BrowserRouter>
-                    <Routes>
-                        <Route path="/" element={<LoginPage/>}/>
-                        <Route path="/UserInfo" element={<UserInfo/>}/>
-                        <Route path="/Search" element={<Search/>}/>
-                        <Route path="/News" element={<News/>}/>
-                        <Route path="/check" element={<Check/>}/>
-                        <Route path="/test" element={<TestProxy/>}/>
-                        <Route element={<Navbar/>}>
-                            <Route path="/main" element={<Main/>}/>
-                            <Route path="/login" element={<LoginPage/>}/>
-                            <Route path="/signUp" element={<SignUp/>}/>
+                    <BrowserRouter>
+                        <Routes>
+                            <Route path="/" element={<LoginPage/>}/>
+                            <Route path="/UserInfo" element={<UserInfo/>}/>
+                            <Route path="/Search" element={<Search/>}/>
+                            <Route path="/News" element={<News/>}/>
+                            <Route path="/check" element={<Check/>}/>
+                            <Route path="/test" element={<TestProxy/>}/>
                             <Route path="/authProcess" element={<LoginSuccess/>}/>
-                            <Route path="/main/{}" element={<Check/>}/>
-                        </Route>
-                    </Routes>
-                </BrowserRouter>
+                            <Route element={<Navbar/>}>
+                                <Route path="/main" element={<Main/>}/>
+                                <Route path="/login" element={<LoginPage/>}/>
+                                <Route path="/signUp" element={<SignUp/>}/>
+                                <Route path="/main/{}" element={<Check/>}/>
+                            </Route>
+                        </Routes>
+                    </BrowserRouter>
                 </div>
             </div>
     );
