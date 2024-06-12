@@ -21,9 +21,9 @@ const Router = () => {
                         <Route path="/Search" element={<Search/>}/>
                         <Route path="/News" element={<News/>}/>
                         <Route path="/check" element={<Check/>}/>
+                        <Route path="/test" element={<TestProxy/>}/>
                         <Route element={<Navbar/>}>
                             <Route path="/main" element={<Main/>}/>
-                            <Route path="/test" element={<TestProxy/>}/>
                             <Route path="/login" element={<LoginPage/>}/>
                             <Route path="/signUp" element={<SignUp/>}/>
                             <Route path="/authProcess" element={<LoginSuccess/>}/>
