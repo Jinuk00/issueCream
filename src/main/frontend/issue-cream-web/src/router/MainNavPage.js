@@ -10,9 +10,9 @@ function MainNavPage(){
                 <Navbar/>
                 <Routes>
                     <Route path="/main" element={<Main/>}/>
-                    <Route path="/login" element={<LoginPage/>}/>
+                    <Route path="/main/:category" element={<Main/>}/>
                     {/*<Route path="/signUp" element={<SignUp/>}/>*/}
-                    <Route path="/main/{}" element={<Check/>}/>
+                    {/*<Route path="/main/{}" element={<Check/>}/>*/}
                 </Routes>
             </>
     )

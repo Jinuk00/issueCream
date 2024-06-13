@@ -2,6 +2,7 @@ package com.clova.issuecream.contents.service;
 
 import com.clova.issuecream.contents.dto.NewsTitleDto;
 import com.clova.issuecream.contents.entity.NewsBoard;
+import com.clova.issuecream.contents.enums.CategoryCode;
 import com.clova.issuecream.contents.repository.NewsBoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,5 +24,9 @@ public class NewsBoardService {
                     .build());
         });
         return newsTitleDtos;
+    }
+
+    public List<NewsTitleDto> searchByCategory(String category) {
+        return newsBoardRepository.findByCategory(CategoryCode.transByUrl(category));
     }
 }

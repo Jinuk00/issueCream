@@ -1,5 +1,6 @@
 package com.clova.issuecream.contents.dto;
 
+import com.querydsl.core.annotations.QueryProjection;
 import lombok.*;
 
 @Getter

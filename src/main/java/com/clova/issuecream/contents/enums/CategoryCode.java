@@ -11,14 +11,15 @@ import java.util.stream.Stream;
 @Getter
 public enum CategoryCode implements Constant {
 
-    It("IT","IT"),
-    시사("PRV","시사"),
-    미디어("MD","미디어"),
-    스포츠("SPR","스포츠"),
-    경제("ECN","경제"),
+    It("IT","IT","it"),
+    시사("PRV","시사","preview"),
+    미디어("MD","미디어","media"),
+    스포츠("SPR","스포츠","sports"),
+    경제("ECN","경제","economy"),
     ;
     private final String code;
     private final String text;
+    private final String urlCode;
 
     public static CategoryCode of(String code) {
         if(code == null || "".equals(code)){
@@ -33,6 +34,12 @@ public enum CategoryCode implements Constant {
     public static CategoryCode transByName(String categoryNm) {
        return Arrays.stream(CategoryCode.values())
                 .filter(i -> i.getText().equals(categoryNm))
+                .findAny().orElse(null);
+    }
+
+    public static CategoryCode transByUrl(String urlCode) {
+        return Arrays.stream(CategoryCode.values())
+                .filter(i -> i.getUrlCode().equals(urlCode))
                 .findAny().orElse(null);
     }
 }

@@ -1,4 +1,4 @@
-import {Link, Route, useNavigate} from "react-router-dom";
+import {Link, Route, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import Navbar from "../common/Navbar";
 import {useEffect, useState} from "react";
@@ -7,21 +7,28 @@ import Footer from "../common/Footer";
 
 function Main() {
     const [news, setNews] = useState([]);
+    let {category} = useParams();
     const navigate = useNavigate();
     useEffect(() => {
-        axios.post('/api/news/search')
+        console.log(category);
+        if (category) {
+            console.log("들어옴?")
+        }
+        axios.post('/api/news/search' + (category ? "/" + category : ""))
                 .then((res) => {
                     setNews(res.data.data);
                 })
                 .catch((error) => {
+                    setNews()
                 });
-    }, []);
+    }, [category]);
 
     return (
             <>
                 <div>
                     <div className="pb1"> AI가  하루에 ✌️두 번씩✌️ 뉴스레터를 생성해요</div>
                     {
+                        news &&
                         news.map((item,index)=>(
                                 <NewsTitle key={index} title={item.newsTitle}/>
                         ))

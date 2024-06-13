@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface NewsBoardRepository extends JpaRepository<NewsBoard,Long> {
+public interface NewsBoardRepository extends JpaRepository<NewsBoard, Long>, NewsBoardRepositoryCustom {
     List<NewsBoard> findAllByOrderByNewsDate();
 
 }
