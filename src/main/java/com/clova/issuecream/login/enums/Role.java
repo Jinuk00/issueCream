@@ -6,10 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Arrays;
+
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public enum Role implements Constant{
+public enum Role {
     USER("ROLE_USER"),
     ADMIN("ROLE_ADMIN"),
     ;
@@ -17,11 +19,13 @@ public enum Role implements Constant{
     String code;
 
     public static Role of(String code) {
-        return Constant.fromCode(Role.class, code);
+        if (code == null || code.equals("")) {
+            return null;
+        }
+        return Arrays.stream(Role.values())
+                .filter(i -> i.getCode().equals(code))
+                .findAny()
+                .orElseThrow(IllegalArgumentException::new);
     }
 
-    @Override
-    public String getText() {
-        return this.name();
-    }
 }

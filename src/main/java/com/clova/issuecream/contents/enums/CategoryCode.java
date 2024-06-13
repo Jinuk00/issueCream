@@ -25,7 +25,7 @@ public enum CategoryCode implements Constant {
         if(code == null || "".equals(code)){
             return null;
         }
-        return Stream.of(CategoryCode.values())
+        return Arrays.stream(CategoryCode.values())
                 .filter(f -> f.getCode().equals(code))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);

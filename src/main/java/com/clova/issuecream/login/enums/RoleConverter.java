@@ -1,13 +1,21 @@
 package com.clova.issuecream.login.enums;
 
 
-import com.clova.issuecream.common.Constant;
-import com.clova.issuecream.common.EnumConverter;
+import jakarta.persistence.AttributeConverter;
 
-public class RoleConverter extends EnumConverter<Role,String> {
+public class RoleConverter implements AttributeConverter<Role,String> {
+
     @Override
-    public Constant convertToEntityAttribute(String dbData) {
-        return Role.of(dbData);
+    public String convertToDatabaseColumn(Role role) {
+        if(role == null) {
+            return null;
+        }
+        return role.getCode();
+    }
+
+    @Override
+    public Role convertToEntityAttribute(String code) {
+        return Role.of(code);
     }
 
 }

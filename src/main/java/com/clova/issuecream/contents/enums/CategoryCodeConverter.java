@@ -1,11 +1,21 @@
 package com.clova.issuecream.contents.enums;
 
 import com.clova.issuecream.common.Constant;
-import com.clova.issuecream.common.EnumConverter;
+import com.clova.issuecream.common.CommonEnumConverter;
+import jakarta.persistence.AttributeConverter;
 
-public class CategoryCodeConverter extends EnumConverter<CategoryCode, String> {
+public class CategoryCodeConverter implements AttributeConverter<CategoryCode, String> {
+
     @Override
-    public Constant convertToEntityAttribute(String dbData) {
+    public String convertToDatabaseColumn(CategoryCode categoryCode) {
+        if(categoryCode == null) {
+            return null;
+        }
+        return categoryCode.getCode();
+    }
+
+    @Override
+    public CategoryCode convertToEntityAttribute(String dbData) {
         return CategoryCode.of(dbData);
     }
 }

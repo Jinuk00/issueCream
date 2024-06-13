@@ -63,6 +63,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                     .role(Role.USER)
                     .build();
             memberRepository.save(member);
+            return new CustomOAuth2User(member.toDto());
         }
 //        else {		// 회원정보가 존재한다면 조회된 데이터로 반환한다.
 //            Member member = checkMember.get();
