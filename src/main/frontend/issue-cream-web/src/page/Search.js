@@ -1,5 +1,6 @@
 import {Link} from "react-router-dom";
 import React, { useState } from 'react';
+import HeaderLogo from "../common/HeaderLogo";
 
 function Search(){
 
@@ -16,7 +17,7 @@ function Search(){
     return(
         <>
             <div className="flex" style={{marginBottom: '2rem', paddingTop: '2rem'}}>
-                <img src="/images/headerLogo.png" className="mr_auto" alt="Clova" style={{width: '10rem'}}/>
+                <HeaderLogo/>
             </div>
             <div className="base-blue " style={{marginBottom: '2rem'}}>
                 <div>

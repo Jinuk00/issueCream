@@ -2,12 +2,18 @@ import {Link, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import axiosUtils from "../utils/AxiosUtils";
+import HeaderLogo from "../common/HeaderLogo";
 
 function UserInfo(){
     const [email, setEmail] = useState("");
     const navigate = useNavigate();
 
     useEffect(() => {
+        if (!localStorage.getItem("access")) {
+            alert("로그인이 필요합니다.");
+            navigate('/api/oauth2/authorization/kakao');
+            window.location.reload();
+        }
         axios.post('/api/user/info', {}, {
             headers: {
                 'Content-Type': 'application/json',
@@ -18,7 +24,7 @@ function UserInfo(){
             setEmail(res.data);
         }).catch((error) => {
             console.log(error);
-        })
+        });
     }, []);
 
     const logout = ()=>{
@@ -36,13 +42,14 @@ function UserInfo(){
     return(
         <>
             <div className="flex" style={{marginBottom: '4rem', paddingTop: '4rem'}}>
-                <img src="/images/headerLogo.png" className="mr_auto" alt="Clova" style={{width: '15rem'}}/>
+                <HeaderLogo/>
             </div>
             <div className="base-blue">
                 <div  style={{marginBottom: '2rem'}}>
                     로그인 정보
-
-                    이미지
+                </div>
+                <div style={{padding:'0.05rem'}}>
+                    <img src="/images/profile.png" style={{objectFit:"contain"}} />
                 </div>
                 <div>
                     카카오톡 아이디: {email}

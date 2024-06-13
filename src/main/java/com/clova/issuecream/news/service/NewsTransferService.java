@@ -13,6 +13,7 @@ import net.minidev.json.parser.JSONParser;
 import net.minidev.json.parser.ParseException;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -28,7 +29,7 @@ public class NewsTransferService {
 
     private final NewsBoardRepository newsBoardRepository;
 
-
+    @Transactional
     public void transNews() {
         ClassPathResource resource = new ClassPathResource("news/2024-06-09 pm.json");
         ObjectMapper objectMapper = new ObjectMapper();
@@ -39,23 +40,40 @@ public class NewsTransferService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
+        List<NewsBoard> saveList = new ArrayList<>();
         for (NewsTransDto dto : newsTransDtos) {
             NewsBoard newsBoard = NewsBoard.builder()
                     .categoryCode(CategoryCode.transByName(dto.getCategory())).build();
             String content = dto.getContent();
-            log.info("본문 {}", content);
+            log.info("확인 {}", content);
             int keyWordindex = content.lastIndexOf("키워드");//추후 수정
+            if (keyWordindex == -1) {
+                continue;
+            }
             String keyWord = content.substring(keyWordindex+6);
-            int titleIndex = content.indexOf("제목");
-            int index = content.indexOf("\n");
-
-            log.info("본문찾은거 {}", content.substring(titleIndex));
-            log.info("첫번째 엔터 {}", content.substring(index));
-            log.info("제목만 {}", content.substring(titleIndex+5, index));
-
-            log.info("{}", keyWord);
-            break;
+            content = content.substring(0, keyWordindex);
+            int titleStartIndex = content.indexOf("제목");
+            int titleEndIndex = content.indexOf("\n");
+            String title = content.substring(titleStartIndex + 5, titleEndIndex);
+            String mainContent = content.substring(titleEndIndex);
+            mainContent = mainContent.substring(mainContent.indexOf("\n") + 1);
+            String[] split = mainContent.split("\n");
+            StringBuilder newsContent = new StringBuilder();
+            for (String s : split) {
+                if (s.equals("")) {
+                    continue;
+                }
+                newsContent.append(s).append("\n");
+            }
+            StringBuilder keyWords = new StringBuilder();
+            for (String word : keyWord.split(",")) {
+                keyWords.append("#").append(word.replaceAll(" ", "")).append(" ");
+            }
+            newsContent.insert(0, keyWords + "\n");
+            newsBoard.createContent(title, newsContent.toString());
+            saveList.add(newsBoard);
+            log.info("객체 {}", newsBoard);
         }
+        newsBoardRepository.saveAll(saveList);
     }
 }

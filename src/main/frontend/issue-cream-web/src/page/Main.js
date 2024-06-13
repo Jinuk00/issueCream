@@ -1,49 +1,32 @@
 import {Link, Route, useNavigate} from "react-router-dom";
 import axios from "axios";
 import Navbar from "../common/Navbar";
+import {useEffect, useState} from "react";
+import NewsTitle from "./news/NewsTitle";
 
 function Main() {
+    const [news, setNews] = useState([]);
     const navigate = useNavigate();
-
-    const logOut = ()=>{
-        axios.post('/api/user/logout')
-                .then((res)=>{
-                    console.log(res);
-                    localStorage.removeItem("access");
-                    alert("로그아웃 됐습니다.");
-                    navigate("/");
-                }).catch((error)=>{
-            console.log(error);
-        })
-    }
+    useEffect(() => {
+        axios.post('/api/news/search')
+                .then((res) => {
+                    setNews(res.data.data);
+                })
+                .catch((error) => {
+                });
+    }, []);
 
     return (
-        <>
-            <div>메인</div>
-            <div>
-                <Link to='/test'>테스트</Link>
-            </div>
-            <div>
-                <Link to='/signUp'>회원가입</Link>
-            </div>
-            <div>
-                <Link to='/news'>기사</Link>
-            </div>
-            <div>
-                {
-                    localStorage.getItem("access") &&
-                    <div>
-                        <Link to='/check'>내정보</Link>
-                    </div>
-                }
-                {
-                    localStorage.getItem("access") &&
-                    <button onClick={logOut}>
-                        로그아웃
-                    </button>
-                }
-            </div>
-        </>
+            <>
+                <div>
+                    <div className="pb1"> AI가  하루에 ✌️두 번씩✌️ 뉴스레터를 생성해요</div>
+                    {
+                        news.map((item,index)=>(
+                                <NewsTitle key={index} title={item.newsTitle}/>
+                        ))
+                    }
+                </div>
+            </>
     );
 }
 

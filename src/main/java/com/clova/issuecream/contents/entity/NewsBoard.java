@@ -14,9 +14,11 @@ import org.hibernate.annotations.DynamicUpdate;
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
 @DynamicUpdate
+@ToString
 public class NewsBoard {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     @Comment("id값")
     Long id;
@@ -26,12 +28,20 @@ public class NewsBoard {
     @Convert(converter = CategoryCodeConverter.class)
     CategoryCode categoryCode;
 
-    @Column(name = "board_nm")
+    @Column(name = "news_title")
     @Comment("뉴스 제목")
-    String boardNm;
+    String newsTitle;
 
-    @Column(name = "board_content")
+    @Column(name = "news_content")
     @Comment("뉴스 본문")
-    String boardContent;
+    String newsContent;
 
+    @Column(name = "news_dt")
+    @Comment("뉴스 기사 날짜")
+    String newsDate;
+
+    public void createContent(String title, String newsContent) {
+        this.newsTitle = title;
+        this.newsContent = newsContent;
+    }
 }

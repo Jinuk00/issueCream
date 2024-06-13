@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 @Getter
 public enum CategoryCode implements Constant {
 
-    It("IT","it"),
+    It("IT","IT"),
     시사("PRV","시사"),
     미디어("MD","미디어"),
     스포츠("SPR","스포츠"),

@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Router from "./Router";
+import Router from "./router/Router";
 // import axios from "axios";
 
 function App() {
