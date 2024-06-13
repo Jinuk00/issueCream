@@ -2,6 +2,7 @@ import {Link} from "react-router-dom";
 import axios from "axios";
 import Category from "./Category";
 import PageHeader from "./PageHeader";
+import Footer from "../common/Footer";
 
 function NewsDetail(){
 
@@ -27,6 +28,7 @@ function NewsDetail(){
                 <img src="/images/scrap.png" className="mr2 image-size"/>
                 <img src="/images/share.png" className="mr2 image-size"/>
             </div>
+            <Footer/>
         </>
     );
 }

@@ -79,10 +79,6 @@
   margin-bottom: 2rem;
 }
 
-.border{
-  border: 1px solid #389BD7;
-}
-
 .no-border{
   border-width: 0;
   background-color: #CCECFF;
@@ -101,6 +97,8 @@ input:focus {
 }
 .bannerStyle2{
   border-top: 0.1rem solid black;
+}
+.bannerStyle3{
   border-bottom: 0.1rem solid black;
 }
 .test-image{
@@ -114,6 +112,7 @@ input:focus {
 .text-center{
   display: grid;
   align-items: center;
+  width:100%
 }
 .image-size{
   width: 3rem;
