@@ -112,3 +112,7 @@ input:focus {
   display: grid;
   align-items: center;
 }
+.image-size{
+  width: 3rem;
+  height: 3rem;
+}
