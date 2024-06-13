@@ -24,28 +24,33 @@ function Main() {
     }, [category]);
 
     return (
-            <>
-                <div>
-                    <div className="pb1"> AI가  하루에 ✌️두 번씩✌️ 뉴스레터를 생성해요</div>
-                    {
-                        news &&
-                        news.map((item,index)=>(
-                                <NewsTitle key={index} title={item.newsTitle}/>
-                        ))
-                    }
-                </div>
-                <div>
-                    <div className="flex bannerStyle2" style={{marginBottom: '2rem'}}>
-                        <img src="/images/test_image.png" className="test-image" />
-                        <div style={{marginTop: '4rem'}}>
-                            AI 기반 실시간 뉴스레터 제공 서비스 ‘이슈크림’은
+        <>
+            <div>
+                <div className="pb1"> AI가 하루에 ✌️두 번씩✌️ 뉴스레터를 생성해요</div>
+                {
+                    news &&
+                    news.map((item, index) => (
+                        <NewsTitle key={index} title={item.newsTitle}/>
+                    ))
+                }
+            </div>
+            <div>
+                <div className="bannerStyle2" style={{marginBottom: '2rem'}}>
+                    <div className="mr1">
+                        2024. 05. 11 IT
+                    </div>
+                    <div className="flex mr1">
+                        <img src="/images/test_image.png" className="test-image mr1"/>
+                        <div className="mr1 text-center">
+                            애플 신제품 가격이 냉장고 값이라구?! 애플 신제품 출시 현장으로 GO GO!
                         </div>
                     </div>
                 </div>
-                <div>
-                    <Footer/>
-                </div>
-            </>
+            </div>
+            <div>
+                <Footer/>
+            </div>
+        </>
     );
 }
 

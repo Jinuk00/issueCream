@@ -101,7 +101,14 @@ input:focus {
   border-bottom: 0.1rem solid black;
 }
 .test-image{
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
   object-fit: contain;
+}
+.mr1{
+  margin:0.5rem;
+}
+.text-center{
+  display: grid;
+  align-items: center;
 }
