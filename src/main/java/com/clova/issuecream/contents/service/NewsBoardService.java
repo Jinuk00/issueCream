@@ -29,4 +29,8 @@ public class NewsBoardService {
     public List<NewsTitleDto> searchByCategory(String category) {
         return newsBoardRepository.findByCategory(CategoryCode.transByUrl(category));
     }
+
+    public List<NewsTitleDto> searchByTitle(String searchTitle) {
+        return newsBoardRepository.findByTitle(searchTitle);
+    }
 }

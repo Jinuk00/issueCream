@@ -30,4 +30,18 @@ public class NewsBoardRepositoryImpl implements NewsBoardRepositoryCustom {
                 .fetch();
 
     }
+
+    @Override
+    public List<NewsTitleDto> findByTitle(String searchTitle) {
+        return queryFactory.select(Projections.bean(
+                        NewsTitleDto.class,
+                        newsBoard.id,
+                        newsBoard.newsTitle
+                ))
+                .from(newsBoard)
+                .where(newsBoard.newsTitle.contains(searchTitle))
+                .orderBy(newsBoard.newsDate.desc(),
+                        newsBoard.id.desc())
+                .fetch();
+    }
 }

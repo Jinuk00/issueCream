@@ -27,12 +27,7 @@ function Main() {
         <>
             <div>
                 <div className="pb1"> AI가 하루에 ✌️두 번씩✌️ 뉴스레터를 생성해요</div>
-                {
-                    news &&
-                    news.map((item, index) => (
-                        <NewsTitle key={index} title={item.newsTitle}/>
-                    ))
-                }
+                <NewsTitle news={news}/>
             </div>
             <div>
                 <div className="bannerStyle2" style={{marginBottom: '2rem'}}>
@@ -47,9 +42,7 @@ function Main() {
                     </div>
                 </div>
             </div>
-            <div>
-                <Footer/>
-            </div>
+            <Footer/>
         </>
     );
 }

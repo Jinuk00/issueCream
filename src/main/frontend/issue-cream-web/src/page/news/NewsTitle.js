@@ -1,11 +1,18 @@
 function NewsTitle(props) {
     return (
-            <div className="border">
-                <div className="flex" style={{height:"3rem"}}>
-                    <div>img</div>
-                    <div>{props.title}</div>
-                </div>
-            </div>
+            <>
+                {
+                        props.news &&
+                        props.news.map((item, index) => (
+                                <div className="border" key={index}>
+                                    <div className="flex" style={{height: "3rem"}}>
+                                        <div style={{paddingRight:"1rem"}}>이미지 자리 </div>
+                                        <div>{item.newsTitle}</div>
+                                    </div>
+                                </div>
+                        ))
+                }
+            </>
     );
 }
 

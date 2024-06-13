@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface NewsBoardRepositoryCustom {
     List<NewsTitleDto> findByCategory(CategoryCode categoryCode);
+
+    List<NewsTitleDto> findByTitle(String searchTitle);
 }
