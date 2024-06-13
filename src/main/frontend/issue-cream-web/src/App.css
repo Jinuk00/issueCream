@@ -12,9 +12,12 @@
   margin: auto;
 }
 .background{
+  display: flex;
   align-items: center;
+  justify-content: center;
   text-align: center;
   background-color: #D5EAF2;
+  min-height: 100vh;
 }
 
 .main_padding {
@@ -115,4 +118,9 @@ input:focus {
 .image-size{
   width: 3rem;
   height: 3rem;
+}
+.user-info-size{
+  width: 10rem;
+  height: 10rem;
+  object-fit: contain;
 }

@@ -45,25 +45,24 @@ function UserInfo(){
                 <HeaderLogo/>
             </div>
             <div className="base-blue">
-                <div  style={{marginBottom: '2rem'}}>
+                <div  style={{ padding: '2rem'}}>
                     로그인 정보
                 </div>
-                <div style={{padding:'0.05rem'}}>
-                    <img src="/images/profile.png" style={{objectFit:"contain"}} />
+                <div style={{marginBottom: '2rem'   }}>
+                    <img src="/images/profile.png"  className="user-info-size" />
                 </div>
-                <div>
+                <div style={{ marginBottom: '2rem'}}>
                     카카오톡 아이디: {email}
                 </div>
-                <div>
+                <div  style={{ paddingBottom: '2rem'}}>
                     스크랩한 뉴스레터:
                 </div>
             </div>
 
-            <div className="btn" style={{marginTop: '5rem'}} onClick={logout}>
+            <div className="btn" style={{marginTop: '3rem'}} onClick={logout}>
                 로그아웃
             </div>
-
-            <div className="flex" style={{paddingBottom: '1rem', marginTop: "3rem"}}>
+            <div className="flex" style={{paddingBottom: '2 rem', marginTop: "3rem"}}>
                 탈퇴하기
             </div>
         </>
