@@ -3,7 +3,7 @@ import axios from "axios";
 import Category from "./Category";
 import PageHeader from "./PageHeader";
 
-function News(){
+function NewsDetail(){
 
     return(
         <>
@@ -31,4 +31,4 @@ function News(){
     );
 }
 
-export default News;
+export default NewsDetail;
