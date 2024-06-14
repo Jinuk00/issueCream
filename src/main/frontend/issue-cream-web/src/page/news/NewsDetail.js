@@ -15,6 +15,12 @@ function NewsDetail(){
         categoryCode: '',
     });
 
+    const [isToggled, setIsToggled] = useState(false);
+
+    const handleToggle = () => {
+        setIsToggled(prevState => !prevState);
+    };
+
     useEffect(()=>{
         axiosUtils.post('/api/news/searchDetail/' + id)
                 .then((res) => {
