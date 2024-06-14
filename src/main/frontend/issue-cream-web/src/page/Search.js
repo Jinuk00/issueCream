@@ -70,7 +70,7 @@ function Search(callback, deps){
                     AI가 자동생성하는 재미있는 뉴스레터를 읽어보세요.
                 </div>
                 {
-                    searchCheck && (news.length==0 ? <div>해당 검색 결과가 없어요 !</div> : <NewsTitle news={news}/>)
+                    searchCheck && (news==null || news.length==0 ? <div>해당 검색 결과가 없어요 !</div> : <NewsTitle news={news}/>)
                 }
                 <Footer/>
             </>
