@@ -50,6 +50,7 @@ public class SecurityConfig {
                         AntPathRequestMatcher.antMatcher("/js/**"),
                         AntPathRequestMatcher.antMatcher("/css/**"),
                         AntPathRequestMatcher.antMatcher("/images/**"),
+                        AntPathRequestMatcher.antMatcher("/news/searchDetail/{id}"),
                         PathRequest.toStaticResources().atCommonLocations());
     }
 

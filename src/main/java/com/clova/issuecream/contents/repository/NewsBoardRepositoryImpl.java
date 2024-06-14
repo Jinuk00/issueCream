@@ -36,6 +36,9 @@ public class NewsBoardRepositoryImpl implements NewsBoardRepositoryCustom {
 
     @Override
     public List<NewsTitleDto> findByTitle(String searchTitle) {
+        if (searchTitle.trim().isEmpty()) {
+            return null;
+        }
         return queryFactory.select(Projections.bean(
                         NewsTitleDto.class,
                         newsBoard.id,

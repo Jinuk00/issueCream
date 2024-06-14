@@ -26,20 +26,13 @@ function NewsDetail(){
         });
     },[])
 
-
-    const [isToggled, setIsToggled] = useState(false);
-
-    const handleToggle = () => {
-        setIsToggled(prevState => !prevState);
-    };
-
     return (
             <>
                 <PageHeader/>
-                <Category category={newsInfo.categoryCode}/>
+                <Category category={newsInfo && newsInfo.categoryCode}/>
                 <div className="flex">
                     <div style={{marginBottom: '2rem'}} className="selectCategory">
-                        {newsInfo.categoryCode}
+                        {newsInfo && newsInfo.categoryCode}
                     </div>
                 </div>
                 <div className="base-blue2 main_padding" style={{marginBottom: '2rem'}}>
