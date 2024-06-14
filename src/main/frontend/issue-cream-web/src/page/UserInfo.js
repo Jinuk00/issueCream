@@ -73,7 +73,7 @@ function UserInfo(){
             <div className="btn" style={{marginTop: '3rem'}} onClick={logout}>
                 로그아웃
             </div>
-            <div className="btn" style={{paddingBottom: '2 rem', marginTop: "3rem"}} onClick={deleteUser}>
+            <div className="btn" style={{paddingBottom:'3rem', marginTop: "3rem"}} onClick={deleteUser}>
                 탈퇴하기
             </div>
         </>

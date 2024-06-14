@@ -37,11 +37,13 @@ function NewsDetail(){
             <>
                 <PageHeader/>
                 <Category category={newsInfo.categoryCode}/>
-                <div style={{marginBottom: '2rem'}}>
-                    {newsInfo.categoryCode}
+                <div className="flex">
+                    <div style={{marginBottom: '2rem'}} className="selectCategory">
+                        {newsInfo.categoryCode}
+                    </div>
                 </div>
-                    <div className="base-blue2 main_padding" style={{marginBottom: '2rem'}}>
-                        {newsInfo && newsInfo.newsTitle}
+                <div className="base-blue2 main_padding" style={{marginBottom: '2rem'}}>
+                    {newsInfo && newsInfo.newsTitle}
                         <div>
                             2024.04.11
                         </div>

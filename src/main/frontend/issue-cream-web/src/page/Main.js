@@ -45,7 +45,7 @@ function Main() {
         <>
             <Navbar category={categoryNm}/>
             <div>
-                <div className="pb1"> AI가 하루에 ✌️두 번씩✌️ 뉴스레터를 생성해요</div>
+                <div className="pb1" style={{marginBottom: '2rem'}}> AI가 하루에 ✌️두 번씩✌️ 뉴스레터를 생성해요</div>
                 <NewsTitle news={news}/>
             </div>
             <Footer/>
