@@ -123,3 +123,9 @@ input:focus {
   height: 10rem;
   object-fit: contain;
 }
+
+.selectCategory{
+  font-family: "Pretendard-Bold";
+  text-decoration-left:  underline;
+  text-decoration-color: black;
+}

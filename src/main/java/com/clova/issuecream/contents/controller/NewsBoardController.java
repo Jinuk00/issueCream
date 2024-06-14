@@ -25,4 +25,9 @@ public class NewsBoardController {
     public CommonResponse searchNewsByTitle(@RequestParam String searchTitle) {
         return CommonResponse.okData(newsBoardService.searchByTitle(searchTitle));
     }
+
+    @PostMapping("/news/searchDetail/{id}")
+    public CommonResponse searchNewsDetail(@PathVariable Long id) {
+        return CommonResponse.okData(newsBoardService.searchBtId(id));
+    }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 function NewsTitle(props) {
     return (
@@ -9,11 +10,11 @@ function NewsTitle(props) {
                     <React.Fragment key={index}>
                         <div className="bannerStyle2">
                             <div style={{marginTop: '0.5rem'}}>
-                                2024. 05. 11 IT
+                                {item.newsDate} {item.categoryCode}
                             </div>
                             <div className="flex mr1">
                                 <img src="/images/test_image.png" className="test-image mr1"/>
-                                <div className="mr1 text-center">{item.newsTitle}</div>
+                                <Link to={'/newsDetail/'+item.id} className="mr1 text-center link">{item.newsTitle}</Link>
                             </div>
                         </div>
                         {index === props.news.length - 1 && (

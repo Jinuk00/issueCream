@@ -1,6 +1,8 @@
 package com.clova.issuecream.contents.enums;
 
 import com.clova.issuecream.common.Constant;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -18,6 +20,7 @@ public enum CategoryCode implements Constant {
     경제("ECN","경제","economy"),
     ;
     private final String code;
+    @JsonValue
     private final String text;
     private final String urlCode;
 
@@ -31,6 +34,7 @@ public enum CategoryCode implements Constant {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
+    @JsonCreator
     public static CategoryCode transByName(String categoryNm) {
        return Arrays.stream(CategoryCode.values())
                 .filter(i -> i.getText().equals(categoryNm))

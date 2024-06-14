@@ -7,7 +7,6 @@ import Check from "../login/Check";
 function MainNavPage(){
     return(
             <>
-                <Navbar/>
                 <Routes>
                     <Route path="/main" element={<Main/>}/>
                     <Route path="/main/:category" element={<Main/>}/>

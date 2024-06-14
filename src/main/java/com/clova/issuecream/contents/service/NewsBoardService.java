@@ -1,5 +1,6 @@
 package com.clova.issuecream.contents.service;
 
+import com.clova.issuecream.contents.dto.NewsDetailDto;
 import com.clova.issuecream.contents.dto.NewsTitleDto;
 import com.clova.issuecream.contents.entity.NewsBoard;
 import com.clova.issuecream.contents.enums.CategoryCode;
@@ -21,6 +22,7 @@ public class NewsBoardService {
         newsBoards.forEach(i->{
             newsTitleDtos.add(NewsTitleDto.builder()
                     .id(i.getId()).newsTitle(i.getNewsTitle())
+                    .newsDate(i.getNewsDate()).categoryCode(i.getCategoryCode())
                     .build());
         });
         return newsTitleDtos;
@@ -32,5 +34,9 @@ public class NewsBoardService {
 
     public List<NewsTitleDto> searchByTitle(String searchTitle) {
         return newsBoardRepository.findByTitle(searchTitle);
+    }
+
+    public NewsDetailDto searchBtId(Long id) {
+        return newsBoardRepository.findDetailById(id);
     }
 }

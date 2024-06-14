@@ -8,7 +8,7 @@ import LoginPage from "../page/LoginPage";
 import Navbar from "../common/Navbar";
 import UserInfo from "../page/UserInfo";
 import Search from "../page/Search";
-import NewsDetail from "../page/NewsDetail";
+import NewsDetail from "../page/news/NewsDetail";
 import MainNavPage from "./MainNavPage";
 
 const Router = () => {
@@ -20,7 +20,7 @@ const Router = () => {
                             <Route path="/" element={<LoginPage/>}/>
                             <Route path="/userInfo" element={<UserInfo/>}/>
                             <Route path="/search" element={<Search/>}/>
-                            <Route path="/news" element={<NewsDetail/>}/>
+                            <Route path="/newsDetail/:id" element={<NewsDetail/>}/>
                             <Route path="/check" element={<Check/>}/>
                             <Route path="/test" element={<TestProxy/>}/>
                             <Route path="/authProcess" element={<LoginSuccess/>}/>
