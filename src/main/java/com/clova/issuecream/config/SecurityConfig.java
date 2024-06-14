@@ -50,7 +50,6 @@ public class SecurityConfig {
                         AntPathRequestMatcher.antMatcher("/js/**"),
                         AntPathRequestMatcher.antMatcher("/css/**"),
                         AntPathRequestMatcher.antMatcher("/images/**"),
-                        AntPathRequestMatcher.antMatcher("/news/searchDetail/{id}"),
                         PathRequest.toStaticResources().atCommonLocations());
     }
 
@@ -74,7 +73,8 @@ public class SecurityConfig {
                                         "/api/test/proxy",
                                         "/test/proxy",
                                         "/news/**",
-                                        "/user/logout"
+                                        "/user/logout",
+                                        "/news/searchDetail/{id}"
                                 ).permitAll()
                                 .anyRequest().authenticated()
                 )
