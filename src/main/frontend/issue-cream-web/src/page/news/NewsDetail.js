@@ -32,6 +32,23 @@ function NewsDetail(){
         });
     },[])
 
+    const handleShare = async () => {
+        try {
+            if (navigator.share) {
+                await navigator.share({
+                    title: document.title,
+                    text: 'Check out this site!',
+                    url: window.location.href,
+                });
+                console.log('Successfully shared');
+            } else {
+                console.log('Share not supported on this browser, do it the old way.');
+            }
+        } catch (error) {
+            console.error('Error sharing:', error);
+        }
+    };
+
     return (
             <>
                 <PageHeader/>
@@ -80,7 +97,7 @@ function NewsDetail(){
 
                 <div className="flex ">
                 <img src="/images/scrap.png" className="mr2 image-size btn"/>
-                    <img src="/images/share.png" className="mr2 image-size btn"/>
+                    <img src="/images/share.png" className="mr2 image-size btn" onClick={handleShare}/>
                 </div>
                 <Footer/>
             </>
