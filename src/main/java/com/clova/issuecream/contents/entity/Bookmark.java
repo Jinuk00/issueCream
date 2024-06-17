@@ -1,9 +1,6 @@
 package com.clova.issuecream.contents.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.DynamicUpdate;
@@ -18,6 +15,7 @@ import org.hibernate.annotations.DynamicUpdate;
 public class Bookmark {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seq")
     @Comment("시퀀스")
     Long seq;
@@ -29,4 +27,8 @@ public class Bookmark {
     @Column(name = "board_id")
     @Comment("게시물 아이디")
     Long boardId;
+
+    @Column(name = "news_title")
+    @Comment("뉴스 제목")
+    String newsTitle;
 }
