@@ -54,7 +54,7 @@ function NewsDetail(){
                 <PageHeader/>
                 <Category category={newsInfo && newsInfo.categoryCode}/>
                 <div className="flex">
-                    <div style={{marginBottom: '2rem'}} className="selectCategory">
+                    <div style={{marginBottom: '2rem'}} className="selectCategory3">
                         {newsInfo && newsInfo.categoryCode}
                     </div>
                 </div>
@@ -63,10 +63,12 @@ function NewsDetail(){
                         <div>
                             2024.04.11
                         </div>
-                        <div>
-                            카테고리####
+                        <div className = "flex hashtag">
+                            <div>
+                                # 카테고리
+                            </div>
                         </div>
-                    </div>
+                </div>
                 <div className="flex mr2">
                     <img src="/images/book.png" style={{width: '2rem', height: '2rem'}}
                          className={`mr1 ${isToggled ? 'hidden' : ''}`}/>

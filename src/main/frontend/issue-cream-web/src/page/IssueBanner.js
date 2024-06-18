@@ -1,6 +1,6 @@
 function IssueBanner(){
     return (
-        <div className="flex" style={{marginBottom: '2rem'}}>
+        <div className="flex">
             <img src="/images/exampleImg.png" className="bannerStyle"/>
         </div>
     )
