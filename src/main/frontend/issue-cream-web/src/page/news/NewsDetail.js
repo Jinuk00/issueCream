@@ -49,6 +49,22 @@ function NewsDetail(){
         }
     };
 
+    const createBookmark = ()=>{
+        console.log("클릭");
+        if (!localStorage.getItem("access")) {
+            alert("로그인이 필요한 서비스 입니다.");
+            return;
+        }
+        axiosUtils.put("/api/bookmark/"+id)
+                .then((res) => {
+                    if (res.data.resultCode == "OK") {
+                        alert("스크랩이 완료 됐습니다.");
+                    }
+                }).catch((error) => {
+            alert("네트워크 에러입니다.");
+        });
+    }
+
     return (
             <>
                 <PageHeader/>
@@ -98,7 +114,7 @@ function NewsDetail(){
                 </div>
 
                 <div className="flex ">
-                <img src="/images/scrap.png" className="mr2 image-size btn"/>
+                <img src="/images/scrap.png" className="mr2 image-size btn" onClick={createBookmark}/>
                     <img src="/images/share.png" className="mr2 image-size btn" onClick={handleShare}/>
                 </div>
                 <Footer/>
