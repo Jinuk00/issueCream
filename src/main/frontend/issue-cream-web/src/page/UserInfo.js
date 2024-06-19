@@ -8,7 +8,6 @@ function UserInfo() {
     const [email, setEmail] = useState("");
     const navigate = useNavigate();
     const [bookmarkCnt, setBookmarkCnt] = useState(0);
-
     useEffect(() => {
         if (!localStorage.getItem("access")) {
             alert("로그인이 필요합니다.");
@@ -22,7 +21,10 @@ function UserInfo() {
             },
             withCredentials: true,
         }).then((res) => {
-            setEmail(res.data);
+            if (res.data.resultCode == "OK") {
+                setEmail(res.data.data.email);
+                setBookmarkCnt(res.data.data.scrapCnt);
+            }
         }).catch((error) => {
             console.log(error);
         });

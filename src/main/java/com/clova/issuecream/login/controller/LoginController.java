@@ -5,6 +5,7 @@ import com.clova.issuecream.common.enums.ResultCode;
 import com.clova.issuecream.config.JWTUtil;
 import com.clova.issuecream.config.dto.CustomOAuth2User;
 import com.clova.issuecream.config.service.RedisService;
+import com.clova.issuecream.contents.service.BookmarkService;
 import com.clova.issuecream.login.entity.Member;
 import com.clova.issuecream.login.service.LoginService;
 import jakarta.servlet.http.Cookie;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -27,10 +30,13 @@ public class LoginController {
     private final JWTUtil jwtUtil;
     private final RedisService redisService;
     private final LoginService loginService;
-
+    private final BookmarkService bookmarkService;
     @PostMapping(value = "/user/info")
-    public String loginOAuth(@AuthenticationPrincipal CustomOAuth2User memberDto) {
-        return memberDto.getEmail();
+    public CommonResponse loginOAuth(@AuthenticationPrincipal CustomOAuth2User memberDto) {
+        Map<String, String> result = new HashMap<>();
+        result.put("email",memberDto.getEmail());
+        result.put("scrapCnt", String.valueOf(bookmarkService.countScrap(memberDto.getEmail())));
+        return CommonResponse.okData(result);
     }
 
     @PostMapping("/user/logout")

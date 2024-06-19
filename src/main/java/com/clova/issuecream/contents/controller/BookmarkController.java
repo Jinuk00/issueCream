@@ -19,6 +19,11 @@ public class BookmarkController {
         return CommonResponse.ok();
     }
 
+    @PostMapping("/scrap/list")
+    public CommonResponse searchScrapList(@AuthenticationPrincipal CustomOAuth2User customOAuth2User) {
+        return CommonResponse.okData(bookmarkService.searchBookmarkList(customOAuth2User.getEmail()));
+    }
+
     @DeleteMapping("/bookmark")
     public CommonResponse deleteBookmark(@AuthenticationPrincipal CustomOAuth2User customOAuth2User, @RequestParam Long newsId) {
         bookmarkService.deleteBookmark(customOAuth2User.getEmail(), newsId);

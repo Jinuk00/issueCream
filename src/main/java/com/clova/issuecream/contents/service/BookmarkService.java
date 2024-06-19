@@ -1,6 +1,7 @@
 package com.clova.issuecream.contents.service;
 
 import com.clova.issuecream.common.exception.UserException;
+import com.clova.issuecream.contents.dto.BookmarkDto;
 import com.clova.issuecream.contents.entity.Bookmark;
 import com.clova.issuecream.contents.entity.NewsBoard;
 import com.clova.issuecream.contents.repository.BookmarkRepository;
@@ -11,6 +12,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,8 +22,9 @@ public class BookmarkService {
     private final MemberRepository memberRepository;
     private final NewsBoardRepository newsBoardRepository;
 
-    public void searchBookmarkList(String userId) {
-        bookmarkRepository.findByUserId(userId);
+    public List<BookmarkDto> searchBookmarkList(String email) {
+        Optional<Member> checkMember = memberRepository.findByEmail(email);
+        return checkMember.map(member -> bookmarkRepository.findDtoByUserId(member.getUsername())).orElse(null);
     }
 
     public void saveBookmark(String email, Long newsId) {
@@ -61,5 +64,10 @@ public class BookmarkService {
     //탈퇴시 사용
     public void deleteAllBookmark(String userId) {
         bookmarkRepository.deleteAllByUserId(userId);
+    }
+
+    public Long countScrap(String email) {
+        Optional<Member> checkMember = memberRepository.findByEmail(email);
+        return checkMember.map(member -> bookmarkRepository.countByUserId(member.getUsername())).orElse(null);
     }
 }

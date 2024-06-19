@@ -70,8 +70,11 @@ function Search() {
                     </div>
                 </div>
                 {
+                        searchCheck && <div><span style={{color: "blue"}}>'{searchTitle}'</span> 키워드에 해당하는 검색결과</div>
+                }
+                {
                         searchCheck && (news == null || news.length == 0 ? <div>해당 검색 결과가 없어요 !</div> :
-                                <NewsTitle news={news} searchTitle={searchTitle}/>)
+                                <NewsTitle news={news}/>)
                 }
                 <Footer/>
             </>
