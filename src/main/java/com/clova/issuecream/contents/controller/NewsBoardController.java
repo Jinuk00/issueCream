@@ -1,9 +1,15 @@
 package com.clova.issuecream.contents.controller;
 
 import com.clova.issuecream.common.dto.CommonResponse;
+import com.clova.issuecream.contents.dto.NewsTitleDto;
 import com.clova.issuecream.contents.service.NewsBoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,7 +31,11 @@ public class NewsBoardController {
 
     @PostMapping("/news/search/title")
     public CommonResponse searchNewsByTitle(@RequestParam String searchTitle) {
-        return CommonResponse.okData(newsBoardService.searchByTitle(searchTitle));
+        Map<String, Object> result = new HashMap<>();
+        List<NewsTitleDto> data = newsBoardService.searchByTitle(searchTitle);
+        result.put("newsData", data);
+        result.put("searchTitle", searchTitle);
+        return CommonResponse.okData(result);
     }
 
     @PostMapping("/news/searchDetail/{id}")

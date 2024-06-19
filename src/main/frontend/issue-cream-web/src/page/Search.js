@@ -11,6 +11,7 @@ function Search() {
 
     const [news, setNews] = useState([]);
     const [searchCheck, SetSearchCheck] = useState(false);
+    const [viewTitle, setViewTitle] = useState("");
     const searchInput = (event) => {
         setSearchTitle(event.target.value);
     };
@@ -23,11 +24,12 @@ function Search() {
                     .then((res) => {
                         if (res.data.resultCode == "OK") {
                             console.log(res.data.data);
-                            setNews(res.data.data);
+                            setNews(res.data.data.newsData);
+                            setViewTitle(res.data.data.searchTitle);
                         }
                     })
                     .catch((error) => {
-                        setNews();
+                        setNews([]);
                     });
         }
     });
@@ -70,7 +72,7 @@ function Search() {
                     </div>
                 </div>
                 {
-                        searchCheck && <div><span style={{color: "blue"}}>'{searchTitle}'</span> 키워드에 해당하는 검색결과</div>
+                        searchCheck && <div><span style={{color: "blue"}}>'{viewTitle}'</span> 키워드에 해당하는 검색결과</div>
                 }
                 {
                         searchCheck && (news == null || news.length == 0 ? <div>해당 검색 결과가 없어요 !</div> :
