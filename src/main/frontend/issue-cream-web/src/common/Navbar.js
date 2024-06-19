@@ -24,12 +24,16 @@ function Navbar(props) {
         hotTopics();
     }, []);
     return (
-            <div>
+        <div>
+            <div className="sticky-header">
                 <PageHeader/>
-                <IssueBanner/>
-                <LatestTopic topics={hotTopicList}/>
+            </div>
+            <IssueBanner/>
+            <LatestTopic topics={hotTopicList}/>
+            <div className="sticky-category">
                 <Category category={props.category}/>
             </div>
+        </div>
     );
 }
 

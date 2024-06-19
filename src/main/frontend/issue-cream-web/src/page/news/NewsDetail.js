@@ -7,6 +7,7 @@ import React, {useEffect, useState} from "react";
 import axiosUtils from "../../utils/AxiosUtils";
 import Talk1 from "../news/Talk1";
 import Talk2 from "../news/Talk2";
+import Talk3 from "../news/Talk3";
 function NewsDetail(){
     let {id} = useParams();
     const [newsInfo, setNewsInfo] = useState({
@@ -70,7 +71,7 @@ function NewsDetail(){
                 <PageHeader/>
                 <Category category={newsInfo && newsInfo.categoryCode}/>
                 <div className="flex">
-                    <div style={{marginBottom: '2rem'}} className="selectCategory3">
+                    <div style={{marginBottom: '2rem', marginTop:'2rem'}} className="selectCategory3">
                         {newsInfo && newsInfo.categoryCode}
                     </div>
                 </div>
@@ -111,13 +112,14 @@ function NewsDetail(){
                 <div className={`mr2 ${isToggled ? '' : 'hidden2'}`}>
                     <Talk1/>
                     <Talk2/>
+                    <Talk3/>
                 </div>
 
                 <div className="flex ">
                 <img src="/images/scrap.png" className="mr2 image-size btn" onClick={createBookmark}/>
                     <img src="/images/share.png" className="mr2 image-size btn" onClick={handleShare}/>
                 </div>
-                <Footer/>
+                {/*<Footer/>*/}
             </>
     );
 }

@@ -23,11 +23,13 @@ function ScrapPage(){
     }, []);
     return (
             <>
-                <PageHeader/>
-                <div>스크랩한 뉴스레터</div>
-                {
-                    news && <NewsTitle news={news}/>
-                }
+                <div className="superfluity">
+                    <PageHeader/>
+                    <div className="mb2 ">스크랩한 뉴스레터</div>
+                    {
+                        news && <NewsTitle news={news}/>
+                    }
+                </div>
             </>
     );
 }

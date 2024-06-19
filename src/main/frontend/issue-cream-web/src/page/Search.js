@@ -36,6 +36,7 @@ function Search() {
 
     return (
             <>
+                <div className="superfluity">
                 <div className="flex" style={{marginBottom: '2rem', paddingTop: '2rem'}}>
                     <HeaderLogo/>
                 </div>
@@ -72,13 +73,14 @@ function Search() {
                     </div>
                 </div>
                 {
-                        searchCheck && <div><span style={{color: "blue"}}>'{viewTitle}'</span> 키워드에 해당하는 검색결과</div>
+                        searchCheck && <div className="mb2">' <span style={{color: "#2196F3"}}>{viewTitle}</span> ' 키워드에 해당하는 검색결과</div>
                 }
                 {
-                        searchCheck && (news == null || news.length == 0 ? <div>해당 검색 결과가 없어요 !</div> :
+                        searchCheck && (news == null || news.length == 0 ? <div className="mb2">해당 검색 결과가 없어요 !</div> :
                                 <NewsTitle news={news}/>)
                 }
-                <Footer/>
+                {/*<Footer/>*/}
+                </div>
             </>
     );
 }

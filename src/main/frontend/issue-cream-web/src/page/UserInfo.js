@@ -73,7 +73,7 @@ function UserInfo() {
                     카카오톡 아이디: {email}
                 </div>
                 <div style={{paddingBottom: '2rem'}}>
-                    스크랩한 뉴스레터: <span onClick={gotoScrapPage}>{bookmarkCnt}</span> 개
+                    스크랩한 뉴스레터: <span className=" btn selectCategory2" onClick={gotoScrapPage}>{bookmarkCnt}개</span>
                 </div>
             </div>
 

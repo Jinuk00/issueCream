@@ -61,6 +61,7 @@ function Main() {
     return (
             <>
                 <Navbar category={categoryNm}/>
+                <div className="scroll-container">
                 <InfiniteScroll
                         dataLength={news.length}
                         next={fetchNews}
@@ -72,7 +73,8 @@ function Main() {
                         <NewsTitle news={news}/>
                     </div>
                 </InfiniteScroll>
-                <Footer/>
+                </div>
+                {/*<Footer/>*/}
             </>
     );
 }

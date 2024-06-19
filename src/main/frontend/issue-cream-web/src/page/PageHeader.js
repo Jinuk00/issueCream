@@ -11,7 +11,7 @@ function PageHeader(){
     return (
             <>
 
-                <div className="flex" style={{marginBottom: '2rem', paddingTop: '2rem'}}>
+                <div className="flex" style={{marginBottom: '2rem', paddingTop: '2rem' }}>
                     <div>
                         <Link to='/search'><img src="/images/search.png" className="mr_auto" alt="search"
                                                 style={{width: '2rem', height: '2rem', margin: '1rem'}}/></Link>
