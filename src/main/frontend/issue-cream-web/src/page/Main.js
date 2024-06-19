@@ -68,7 +68,7 @@ function Main() {
                         endMessage={<p>더 이상 뉴스가 없습니다</p>}
                 >
                     <div>
-                        <div className="pb1" style={{marginBottom: '2rem'}}> AI가 하루에 ✌️두 번씩✌️ 뉴스레터를 생성해요</div>
+                        <div style={{marginBottom: '2rem'}}> AI가 하루에 ✌️두 번씩✌️ 뉴스레터를 생성해요</div>
                         <NewsTitle news={news}/>
                     </div>
                 </InfiniteScroll>

@@ -2,6 +2,10 @@
   display: flex;
   justify-content: center;
 }
+.flex2 {
+  display: flex;
+  justify-content: left;
+}
 
 .center{
   text-align: center;
@@ -23,7 +27,12 @@
 .main_padding {
   padding: 2rem;
 }
-
+.pl1{
+  padding-left: 2rem;
+}
+.pt1{
+  padding-top: 2rem;
+}
 .mr2 {
   margin: 2rem;
 }
@@ -87,6 +96,9 @@
 .pb3 {
   padding-top: 0.7rem;
 }
+.p3 {
+  padding: 6rem;
+}
 .mb2{
   margin-bottom: 2rem;
 }
@@ -119,6 +131,12 @@ input:focus {
 }
 .mr1{
   margin:0.5rem;
+}
+.mr4{
+  margin:0.3rem;
+}
+.ml1{
+  margin-left:0.5rem;
 }
 .text-center{
   display: grid;
@@ -288,10 +306,10 @@ input:focus {
 
 .slide {
   min-width: 100%;
-  background-color: #fff;
-  padding: 2rem;
+  padding:2rem;
   text-align: center; /*글씨중앙정렬*/
   box-sizing: border-box;
+  color:white;
 }
 
 .progress-bar {
@@ -318,5 +336,24 @@ input:focus {
   bottom: 1rem;
   right: 1rem;
   font-size: 0.8rem;
-  color: #555;
+  color: white;
+}
+.text-left{
+  text-align: left;
+}
+.text-color{
+  color: #CCECFF;
+}
+.text-color2{
+  color: #6F6E6E;
+  font-size: 0.9rem;
+}
+.text-color3{
+  font-size: 0.9rem;
+  color: #0288D1;
+}
+.topic-background{
+
+  background: linear-gradient(0deg, #000000 2.5%, rgba(0, 0, 0, 0.790825) 25.38%, rgba(0, 0, 0, 0.749507) 49.23%, rgba(0, 0, 0, 0) 100%);
+
 }

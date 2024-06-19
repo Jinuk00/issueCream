@@ -11,14 +11,14 @@ function LatestTopic(props){
     }, []);
 
     return (
-        <div className="">
-            <div className="mr1">
+        <div className="topic-background pb1">
+            <div className="pt1 pl1 text-left text-color">
                 HOT TOPICS TODAY!
             </div>
             <div className="slider-container">
-                <div className="slider" style={{transform: `translateX(-${currentIndex * 100}%)`}}>
+                <div className="slider " style={{transform: `translateX(-${currentIndex * 100}%)`}}>
                     {props.topics.map((item, index) => (
-                        <div className="slide" key={index}>{item.newsTitle}</div>
+                        <div className="slide text-left" key={index}>{item.newsTitle}</div>
                     ))}
                 </div>
                 <div className="flex">
