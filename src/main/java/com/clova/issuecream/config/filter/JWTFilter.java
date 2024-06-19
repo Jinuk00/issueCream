@@ -9,6 +9,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,6 +19,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @RequiredArgsConstructor
+@Slf4j
 public class JWTFilter extends OncePerRequestFilter {
     private final JWTUtil jwtUtil;
     @Override
@@ -37,21 +39,22 @@ public class JWTFilter extends OncePerRequestFilter {
 
         // 유효한지 확인 후 클라이언트로 상태 코드 응답
         // Token 만료 확인
-        try {
-            if(jwtUtil.isExpired(originToken)) {
-                PrintWriter writer = response.getWriter();
-                writer.println("access token expired");
-
-                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                return;
-            }
-        } catch (ExpiredJwtException e) {
-            PrintWriter writer = response.getWriter();
-            writer.println("access token expired");
-
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            return;
-        }
+//        try {
+//            if(jwtUtil.isExpired(originToken)) {
+//                PrintWriter writer = response.getWriter();
+//                writer.println("access token expired");
+//
+//                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+//                return;
+//            }
+//        } catch (ExpiredJwtException e) {
+//            PrintWriter writer = response.getWriter();
+//            writer.println("access token expired");
+//
+//            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+//            return;
+//        }
+        log.info("요청 url 확인 :{} \n {}", request.getRequestURI(), request.getRequestURL());
 
         // accessToken인지 refreshToken인지 확인
         String category = jwtUtil.getCategory(originToken);

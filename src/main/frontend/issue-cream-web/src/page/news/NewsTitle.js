@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 function NewsTitle(props) {
     return (
         <>
+            <div><span style={{color:"blue"}}>'{props.searchTitle}'</span> 키워드에 해당하는 검색결과</div>
             {
                 props.news &&
                 props.news.map((item, index) => (

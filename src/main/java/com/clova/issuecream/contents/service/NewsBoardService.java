@@ -6,6 +6,8 @@ import com.clova.issuecream.contents.entity.NewsBoard;
 import com.clova.issuecream.contents.enums.CategoryCode;
 import com.clova.issuecream.contents.repository.NewsBoardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,20 +18,14 @@ import java.util.List;
 public class NewsBoardService {
     private final NewsBoardRepository newsBoardRepository;
 
-    public List<NewsTitleDto> searchAllNews() {
-        List<NewsBoard> newsBoards = newsBoardRepository.findAllByOrderByNewsDate();
-        List<NewsTitleDto> newsTitleDtos = new ArrayList<>();
-        newsBoards.forEach(i->{
-            newsTitleDtos.add(NewsTitleDto.builder()
-                    .id(i.getId()).newsTitle(i.getNewsTitle())
-                    .newsDate(i.getNewsDate()).categoryCode(i.getCategoryCode())
-                    .build());
-        });
-        return newsTitleDtos;
+    public Page<NewsTitleDto> searchAllNews(int page) {
+        PageRequest pageRequest = PageRequest.of(page, 5);
+        return  newsBoardRepository.findAllByPageable(pageRequest);
     }
 
-    public List<NewsTitleDto> searchByCategory(String category) {
-        return newsBoardRepository.findByCategory(CategoryCode.transByUrl(category));
+    public Page<NewsTitleDto> searchByCategory(String category, int page) {
+        PageRequest pageRequest = PageRequest.of(page, 5);
+        return newsBoardRepository.findByCategory(CategoryCode.transByUrl(category), pageRequest);
     }
 
     public List<NewsTitleDto> searchByTitle(String searchTitle) {
@@ -38,5 +34,9 @@ public class NewsBoardService {
 
     public NewsDetailDto searchBtId(Long id) {
         return newsBoardRepository.findDetailById(id);
+    }
+
+    public List<NewsTitleDto> searchHotTopics() {
+        return newsBoardRepository.findHotTopics();
     }
 }

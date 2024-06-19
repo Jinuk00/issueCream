@@ -7,11 +7,12 @@ import HeaderLogo from "../common/HeaderLogo";
 function UserInfo() {
     const [email, setEmail] = useState("");
     const navigate = useNavigate();
+    const [bookmarkCnt, setBookmarkCnt] = useState(0);
 
     useEffect(() => {
         if (!localStorage.getItem("access")) {
             alert("로그인이 필요합니다.");
-            navigate('/api/oauth2/authorization/kakao');
+            navigate('/userLogin');
             window.location.reload();
         }
         axios.post('/api/user/info', {}, {
@@ -50,6 +51,10 @@ function UserInfo() {
                 }
             })
     }
+
+    const gotoScrapPage=()=>{
+        navigate('/scrap')
+    }
     return (
         <>
             <div className="flex" style={{marginBottom: '4rem', paddingTop: '4rem'}}>
@@ -66,7 +71,7 @@ function UserInfo() {
                     카카오톡 아이디: {email}
                 </div>
                 <div style={{paddingBottom: '2rem'}}>
-                    스크랩한 뉴스레터:
+                    스크랩한 뉴스레터: <span onClick={gotoScrapPage}>{bookmarkCnt}</span> 개
                 </div>
             </div>
 

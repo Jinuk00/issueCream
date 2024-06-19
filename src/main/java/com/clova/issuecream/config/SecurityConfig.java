@@ -33,7 +33,6 @@ import java.util.Collections;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
     private final JWTUtil jwtUtil;
     private final CustomOAuth2UserService customOAuth2UserService;
     private final CustomSuccessHandler customSuccessHandler;
@@ -74,7 +73,8 @@ public class SecurityConfig {
                                         "/test/proxy",
                                         "/news/**",
                                         "/user/logout",
-                                        "/news/searchDetail/{id}"
+                                        "/news/searchDetail/{id}",
+                                        "/news/searchDetail/**"
                                 ).permitAll()
                                 .anyRequest().authenticated()
                 )

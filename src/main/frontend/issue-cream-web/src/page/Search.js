@@ -1,13 +1,11 @@
-import {Link} from "react-router-dom";
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import HeaderLogo from "../common/HeaderLogo";
 import axios from "axios";
 import NewsTitle from "./news/NewsTitle";
-import {useEffect} from "react";
 import {useCallback} from "react";
 import Footer from "../common/Footer";
 
-function Search(callback, deps){
+function Search() {
 
     const [searchTitle, setSearchTitle] = useState('');
 
@@ -20,9 +18,9 @@ function Search(callback, deps){
     const searchNews = useCallback((event) => {
         if (event.key == "Enter") {
             SetSearchCheck(true);
+
             axios.post("/api/news/search/title", "searchTitle=" + searchTitle)
                     .then((res) => {
-                        console.log(res);
                         if (res.data.resultCode == "OK") {
                             console.log(res.data.data);
                             setNews(res.data.data);
@@ -51,26 +49,29 @@ function Search(callback, deps){
                         />
                     </div>
                 </div>
-                <div>
-                    AI 기반 실시간 뉴스레터 제공 서비스 ‘이슈크림’은
-                </div>
-                <br/>
-                <br/>
-                <div>
-                    2024 년 6월부터 서비스를 제공하고 있어요!
-                </div>
-                <br/>
-                <br/>
-                <div>
-                    하루 두번!
-                </div>
-                <br/>
-                <br/>
-                <div style={{paddingBottom: "3rem"}}>
-                    AI가 자동생성하는 재미있는 뉴스레터를 읽어보세요.
+                <div style={{display: searchCheck ? "none" : ""}}>
+                    <div>
+                        AI 기반 실시간 뉴스레터 제공 서비스 ‘이슈크림’은
+                    </div>
+                    <br/>
+                    <br/>
+                    <div>
+                        2024 년 6월부터 서비스를 제공하고 있어요!
+                    </div>
+                    <br/>
+                    <br/>
+                    <div>
+                        하루 두번!
+                    </div>
+                    <br/>
+                    <br/>
+                    <div style={{paddingBottom: "3rem"}}>
+                        AI가 자동생성하는 재미있는 뉴스레터를 읽어보세요.
+                    </div>
                 </div>
                 {
-                    searchCheck && (news==null || news.length==0 ? <div>해당 검색 결과가 없어요 !</div> : <NewsTitle news={news}/>)
+                        searchCheck && (news == null || news.length == 0 ? <div>해당 검색 결과가 없어요 !</div> :
+                                <NewsTitle news={news} searchTitle={searchTitle}/>)
                 }
                 <Footer/>
             </>

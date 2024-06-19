@@ -1,8 +1,6 @@
 import Navbar from "../common/Navbar";
 import {Route, Routes} from "react-router-dom";
 import Main from "../page/Main";
-import InitPage from "../page/InitPage";
-import Check from "../login/Check";
 
 function MainNavPage(){
     return(

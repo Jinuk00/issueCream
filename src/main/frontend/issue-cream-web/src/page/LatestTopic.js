@@ -1,23 +1,11 @@
 import React, { useState, useEffect } from 'react';
-function LatestTopic(){
-    const newsItems = [
-        "아이패드 신제품 가격이 냉장고값이라구?!😳\n" +
-        "                애플 신제품 출시 현장으로 GO GO☝️☝",
-        "아이패드 신제품 가격이 냉장고값이라구?!😳\n" +
-        "                애플 신제품 출시 현장으로 GO GO☝️☝",
-        "아이패드 신제품 가격이 냉장고값이라구?!😳\n" +
-        "                애플 신제품 출시 현장으로 GO GO☝️☝",
-        "아이패드 신제품 가격이 냉장고값이라구?!😳\n" +
-        "                애플 신제품 출시 현장으로 GO GO☝️☝",
-        "아이패드 신제품 가격이 냉장고값이라구?!😳\n" +
-        "                애플 신제품 출시 현장으로 GO GO☝️☝",
-    ];
-
+function LatestTopic(props){
     const [currentIndex, setCurrentIndex] = useState(0);
+
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentIndex(prevIndex => (prevIndex + 1) % newsItems.length);
+            setCurrentIndex(prevIndex => (prevIndex + 1) % 5);
         }, 3000);
         return () => clearInterval(interval);
     }, []);
@@ -29,21 +17,21 @@ function LatestTopic(){
             </div>
             <div className="slider-container">
                 <div className="slider" style={{transform: `translateX(-${currentIndex * 100}%)`}}>
-                    {newsItems.map((item, index) => (
-                        <div className="slide" key={index}>{item}</div>
+                    {props.topics.map((item, index) => (
+                        <div className="slide" key={index}>{item.newsTitle}</div>
                     ))}
                 </div>
                 <div className="flex">
                     <div className="progress-bar">
-                        {newsItems.map((_, index) => (
+                        {props.topics.map((_, index) => (
                             <div
                                 key={index}
                                 className={`progress-segment ${currentIndex === index ? 'active' : ''}`}
-                                style={{width: `${100 / newsItems.length}%`}}
+                                style={{width: `${100 /5}%`}}
                             ></div>
                         ))}
                     </div>
-                    <div className="slide-counter">{currentIndex + 1} / {newsItems.length}</div>
+                    <div className="slide-counter">{currentIndex + 1} / {5}</div>
                 </div>
             </div>
         </div>

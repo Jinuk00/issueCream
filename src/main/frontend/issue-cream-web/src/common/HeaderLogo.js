@@ -3,7 +3,6 @@ import {useNavigate} from "react-router-dom";
 function HeaderLogo(){
     const navigate = useNavigate();
     const gotoMain=()=>{
-        console.log("메인클릭");
         navigate("/main");
     }
     return(
