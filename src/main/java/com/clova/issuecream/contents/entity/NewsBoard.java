@@ -40,8 +40,37 @@ public class NewsBoard {
     @Comment("뉴스 기사 날짜")
     String newsDate;
 
+    @Column(name = "keyword1")
+    @Comment("키워드1")
+    String keyWord1;
+
+    @Column(name = "keyword2")
+    @Comment("키워드2")
+    String keyWord2;
+
+    @Column(name = "keyword3")
+    @Comment("키워드3")
+    String keyWord3;
+
+
     public void createContent(String title, String newsContent) {
         this.newsTitle = title;
         this.newsContent = newsContent;
+    }
+
+    public void setKeyWords(String[] keyWords) {
+        if (keyWords.length >= 1) {
+            keyWord1 = keyWords[0];
+        }
+        if (keyWords.length >= 2) {
+            keyWord2 = keyWords[1];
+        }
+        if (keyWords.length >= 3) {
+            keyWord3 = keyWords[2];
+        }
+    }
+
+    public void setNewsDate(String date) {
+        newsDate = date;
     }
 }

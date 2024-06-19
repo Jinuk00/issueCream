@@ -4,7 +4,7 @@ import Main from "../page/Main";
 import SignUp from "../login/SignUp";
 import Check from "../login/Check";
 import LoginSuccess from "../login/LoginSuccess";
-import LoginPage from "../page/LoginPage";
+import InitPage from "../page/InitPage";
 import Navbar from "../common/Navbar";
 import UserInfo from "../page/UserInfo";
 import Search from "../page/Search";
@@ -17,7 +17,7 @@ const Router = () => {
                 <div className="center">
                     <BrowserRouter>
                         <Routes>
-                            <Route path="/" element={<LoginPage/>}/>
+                            <Route path="/" element={<InitPage/>}/>
                             <Route path="/userInfo" element={<UserInfo/>}/>
                             <Route path="/search" element={<Search/>}/>
                             <Route path="/newsDetail/:id" element={<NewsDetail/>}/>
