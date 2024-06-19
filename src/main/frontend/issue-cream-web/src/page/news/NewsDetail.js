@@ -8,12 +8,17 @@ import axiosUtils from "../../utils/AxiosUtils";
 import Talk1 from "../news/Talk1";
 import Talk2 from "../news/Talk2";
 import Talk3 from "../news/Talk3";
+import DetailKeyword from "./DetailKeyword";
 function NewsDetail(){
     let {id} = useParams();
     const [newsInfo, setNewsInfo] = useState({
         newsTitle:'',
         newsContent: '',
         categoryCode: '',
+        newsDate:'',
+        keyWord1: '',
+        keyWord2: '',
+        keyWord3: '',
     });
 
     const [isToggled, setIsToggled] = useState(false);
@@ -78,13 +83,18 @@ function NewsDetail(){
                 <div className="base-blue2 main_padding" style={{marginBottom: '2rem'}}>
                     {newsInfo && newsInfo.newsTitle}
                         <div>
-                            2024.04.11
+                            {newsInfo.newsDate}
                         </div>
-                        <div className = "flex hashtag">
-                            <div>
-                                # 카테고리
-                            </div>
-                        </div>
+                        {/*<div className = "flex hashtag">*/}
+                        {/*    <div>*/}
+                        {/*        # 카테고리*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
+                    <div className="flex">
+                    <DetailKeyword keyword={newsInfo.keyWord1}/>
+                    <DetailKeyword keyword={newsInfo.keyWord2}/>
+                    <DetailKeyword keyword={newsInfo.keyWord3}/>
+                    </div>
                 </div>
                 <div className="flex mr2">
                     <img src="/images/book.png" style={{width: '2rem', height: '2rem'}}

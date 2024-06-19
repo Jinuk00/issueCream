@@ -2,6 +2,7 @@ package com.clova.issuecream.contents.service;
 
 import com.clova.issuecream.common.exception.UserException;
 import com.clova.issuecream.contents.dto.BookmarkDto;
+import com.clova.issuecream.contents.dto.NewsTitleDto;
 import com.clova.issuecream.contents.entity.Bookmark;
 import com.clova.issuecream.contents.entity.NewsBoard;
 import com.clova.issuecream.contents.repository.BookmarkRepository;
@@ -22,7 +23,7 @@ public class BookmarkService {
     private final MemberRepository memberRepository;
     private final NewsBoardRepository newsBoardRepository;
 
-    public List<BookmarkDto> searchBookmarkList(String email) {
+    public List<NewsTitleDto> searchBookmarkList(String email) {
         Optional<Member> checkMember = memberRepository.findByEmail(email);
         return checkMember.map(member -> bookmarkRepository.findDtoByUserId(member.getUsername())).orElse(null);
     }

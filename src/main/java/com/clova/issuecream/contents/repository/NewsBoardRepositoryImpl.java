@@ -55,7 +55,9 @@ public class NewsBoardRepositoryImpl implements NewsBoardRepositoryCustom {
         return queryFactory.select(Projections.bean(
                         NewsTitleDto.class,
                         newsBoard.id,
-                        newsBoard.newsTitle
+                        newsBoard.newsTitle,
+                        newsBoard.newsDate,
+                        newsBoard.categoryCode
                 ))
                 .from(newsBoard)
                 .where(newsBoard.newsTitle.contains(searchTitle))
@@ -70,7 +72,11 @@ public class NewsBoardRepositoryImpl implements NewsBoardRepositoryCustom {
                         NewsDetailDto.class,
                         newsBoard.newsTitle,
                         newsBoard.newsContent,
-                        newsBoard.categoryCode
+                        newsBoard.categoryCode,
+                        newsBoard.newsDate,
+                        newsBoard.keyWord1,
+                        newsBoard.keyWord2,
+                        newsBoard.keyWord3
                 ))
                 .from(newsBoard)
                 .where(newsBoard.id.eq(id))

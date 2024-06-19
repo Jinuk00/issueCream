@@ -67,6 +67,7 @@ function Main() {
                         next={fetchNews}
                         hasMore={hasMore}
                         endMessage={<p>더 이상 뉴스가 없습니다</p>}
+                        loader={<img src="/loading.gif" />}
                 >
                     <div>
                         <div style={{marginBottom: '2rem'}}> AI가 하루에 ✌️두 번씩✌️ 뉴스레터를 생성해요</div>
