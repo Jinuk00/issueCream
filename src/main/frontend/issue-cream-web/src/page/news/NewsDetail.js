@@ -72,63 +72,57 @@ function NewsDetail(){
     }
 
     return (
-        <>
-            <PageHeader/>
-            <Category category={newsInfo && newsInfo.categoryCode}/>
-            <div className="flex">
-                <div style={{marginBottom: '2rem', marginTop: '2rem'}} className="selectCategory3">
-                    {newsInfo && newsInfo.categoryCode}
-                </div>
-            </div>
-            <div className="base-blue2 main_padding pt2" style={{marginBottom: '2rem'}}>
-                {newsInfo && newsInfo.newsTitle}
-                <div className="pb3 text-color2">
-                    {newsInfo.newsDate}
-                </div>
-                {/*<div className = "flex hashtag">*/}
-                {/*    <div>*/}
-                {/*        # 카테고리*/}
-                {/*    </div>*/}
-                {/*</div>*/}
-                <div className="flex pt1">
-                    <DetailKeyword keyword={newsInfo.keyWord1}/>
-                    <DetailKeyword keyword={newsInfo.keyWord2}/>
-                    <DetailKeyword keyword={newsInfo.keyWord3}/>
-                </div>
-            </div>
-            <div className="flex3 mr2">
-                <div className={`toggle-switch mr1 ${isToggled ? 'toggled' : ''}`} onClick={handleToggle}>
-                    <div className="toggle-knob">
-                        <img src="/images/book2.png" alt="book" className={`${isToggled ? 'hidden' : ''}`}/>
-                        <img src="/images/talk2.png" alt="talk" className={`${isToggled ? '' : 'hidden'}`}/>
+            <>
+                <PageHeader/>
+                <Category category={newsInfo && newsInfo.categoryCode}/>
+                <div className="flex">
+                    <div style={{marginBottom: '2rem', marginTop:'2rem'}} className="selectCategory3">
+                        {newsInfo && newsInfo.categoryCode}
                     </div>
                 </div>
+                <div className="base-blue2 main_padding pt2" style={{marginBottom: '2rem'}}>
+                    {newsInfo && newsInfo.newsTitle}
+                        <div className="pb3 text-color2">
+                            {newsInfo && newsInfo.newsDate}
+                        </div>
+                    <div className="flex pt1">
+                        <DetailKeyword keyword={newsInfo.keyWord1}/>
+                        <DetailKeyword keyword={newsInfo.keyWord2}/>
+                        <DetailKeyword keyword={newsInfo.keyWord3}/>
+                    </div>
+                </div>
+                <div className="flex3 mr2">
+                    <div className={`toggle-switch mr1 ${isToggled ? 'toggled' : ''}`} onClick={handleToggle}>
+                        <div className="toggle-knob">
+                            <img src="/images/book2.png" alt="book" className={`${isToggled ? 'hidden' : ''}`}/>
+                            <img src="/images/talk2.png" alt="talk" className={`${isToggled ? '' : 'hidden'}`}/>
+                        </div>
+                    </div>
+                </div>
+                <div className={`mr2 ${isToggled ? 'hidden2' : ''}`}>
+                    {
+                        newsInfo &&
+                        newsInfo.newsContent.split("\n").map((item, index) => (
+                                    <React.Fragment key={index}>
+                                        {item}
+                                        <br/>
+                                    </React.Fragment>
+                            ))
+                    }
+                </div>
 
-            </div>
-            <div className={`mr2 ${isToggled ? 'hidden2' : ''}`}>
-            {
-                    newsInfo &&
-                    newsInfo.newsContent.split("\n").map((item, index) => (
-                        <React.Fragment key={index}>
-                            {item}
-                            <br/>
-                        </React.Fragment>
-                    ))
-                }
-            </div>
+                <div className={`mr2 ${isToggled ? '' : 'hidden2'}`}>
+                    <Talk1/>
+                    <Talk2/>
+                    <Talk3/>
+                </div>
 
-            <div className={`mr2 ${isToggled ? '' : 'hidden2'}`}>
-                <Talk1/>
-                <Talk2/>
-                <Talk3/>
-            </div>
-
-            <div className="flex ">
-                <img src="/images/scrap.png" className="mr2 image-size btn" onClick={createBookmark}/>
-                <img src="/images/share.png" className="mr2 image-size btn" onClick={handleShare}/>
-            </div>
-            {/*<Footer/>*/}
-        </>
+                <div className="flex ">
+                    <img src="/images/scrap.png" className="mr2 image-size btn" onClick={createBookmark}/>
+                    <img src="/images/share.png" className="mr2 image-size btn" onClick={handleShare}/>
+                </div>
+                {/*<Footer/>*/}
+            </>
     );
 }
 

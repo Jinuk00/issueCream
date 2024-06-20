@@ -1,9 +1,10 @@
 import React, { useState, useEffect ,useRef} from 'react';
+import {useNavigate} from "react-router-dom";
 function LatestTopic(props){
     const [currentIndex, setCurrentIndex] = useState(0);
     const [manualChange, setManualChange] = useState(false);
     const intervalRef = useRef(null);
-
+    const navigate = useNavigate();
     useEffect(() => {
         startAutoSlide();
         return () => stopAutoSlide();
@@ -42,6 +43,10 @@ function LatestTopic(props){
         setCurrentIndex(prevIndex => (prevIndex - 1 + 5) % 5);
     };
 
+    const gotoNewsDetail=(id)=>{
+        navigate(`/newsDetail/${id}`);
+    }
+
     return (
         <div className="topic-background pb1">
             <div className="pt1 pl1 text-left text-color">
@@ -51,7 +56,7 @@ function LatestTopic(props){
                 <div className="slider"
                      style={{transform: `translateX(-${currentIndex * 100}%)`, transition: 'transform 1.5s ease'}}>
                     {props.topics.map((item, index) => (
-                        <div className="slide text-left" key={index}>{item.newsTitle}</div>
+                        <div className="slide text-left" key={index} onClick={()=>gotoNewsDetail(item.id)}>{item.newsTitle}</div>
                     ))}
                 </div>
                 <div className="flex">

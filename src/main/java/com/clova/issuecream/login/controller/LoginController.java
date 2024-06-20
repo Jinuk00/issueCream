@@ -51,7 +51,7 @@ public class LoginController {
                 .filter(cookie -> "refresh".equals(cookie.getName()))
                 .findFirst();
 
-        if (!refreshCookie.isPresent()) {
+        if (refreshCookie.isEmpty()) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
@@ -79,13 +79,18 @@ public class LoginController {
         cookie.setMaxAge(0);
         cookie.setPath("/");
 
+        Cookie cookie2 = new Cookie("JSESSIONID", null);
+        cookie2.setMaxAge(0);
+        cookie2.setPath("/");
+
         response.setStatus(HttpServletResponse.SC_OK);
         response.addCookie(cookie);
+        response.addCookie(cookie2);
     }
 
 
     @DeleteMapping("/user/info")
-    public CommonResponse deleteUser(@AuthenticationPrincipal CustomOAuth2User memberDto) {
+    public CommonResponse deleteUser(@AuthenticationPrincipal CustomOAuth2User memberDto, HttpServletResponse response) {
         //카카오 인증 끊기
         Member member = loginService.searchMemberByEmail(memberDto.getEmail());
         if (member != null) {
@@ -93,6 +98,15 @@ public class LoginController {
         }
         //DB 삭제
         ResultCode resultCode = loginService.deleteUser(memberDto.getEmail());
+        Cookie cookie = new Cookie("refresh", null);
+        cookie.setMaxAge(0);
+        cookie.setPath("/");
+
+        Cookie cookie2 = new Cookie("JSESSIONID", null);
+        cookie2.setMaxAge(0);
+        cookie2.setPath("/");
+        response.addCookie(cookie);
+        response.addCookie(cookie2);
         if (resultCode.equals(ResultCode.OK)) {
             return CommonResponse.ok("탈퇴가 완료됐습니다. 감사합니다.");
         }

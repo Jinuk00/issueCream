@@ -48,6 +48,7 @@ function UserInfo() {
             .then((res) => {
                 console.log(res);
                 alert(res.data.message)
+                localStorage.removeItem("access");
                 if (res.data.resultCode == "OK") {
                     navigate("/");
                 }
@@ -73,7 +74,7 @@ function UserInfo() {
                     카카오톡 아이디: {email}
                 </div>
                 <div style={{paddingBottom: '2rem'}}>
-                    스크랩한 뉴스레터: <span className=" btn selectCategory2" onClick={gotoScrapPage}>{bookmarkCnt}개</span>
+                    스크랩한 뉴스레터: <span className=" btn selectCategory2" onClick={gotoScrapPage}>바로가기</span>
                 </div>
             </div>
 
