@@ -49,7 +49,7 @@ function LatestTopic(props){
 
     return (
         <div className="topic-background pb1">
-            <div className="pt1 pl1 text-left text-color">
+            <div className="pt1 pl1 text-left text-color font2">
                 HOT TOPICS TODAY!
             </div>
             <div className="slider-container">

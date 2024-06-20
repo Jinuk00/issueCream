@@ -416,9 +416,12 @@ input:focus {
   text-decoration-color: black;
   font-size: 0.85rem;
 }
-
+.font2{
+  font-family: "Pretendard-Bold";
+}
 .stretched-text{
   letter-spacing: 0.1em;
   word-spacing: 0.1em;
   line-height: 1.3em;
 }
+
