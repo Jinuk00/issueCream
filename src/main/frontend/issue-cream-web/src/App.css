@@ -328,12 +328,12 @@ input:focus {
 
 .progress-segment {
   height: 100%;
-  background-color: #ddd;
+  background-color: #555;
   transition: background-color 0.2s;
 }
 
 .progress-segment.active {
-  background-color: #555;
+  background-color: #ddd;
 }
 
 .slide-counter {

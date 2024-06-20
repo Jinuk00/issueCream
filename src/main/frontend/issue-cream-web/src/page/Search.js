@@ -53,23 +53,17 @@ function Search() {
                     </div>
                 </div>
                 <div style={{display: searchCheck ? "none" : ""}}>
-                    <div>
-                        AI 기반 실시간 뉴스레터 제공 서비스 ‘이슈크림’은
-                    </div>
+
                     <br/>
                     <br/>
                     <div>
-                        2024 년 6월부터 서비스를 제공하고 있어요!
-                    </div>
-                    <br/>
-                    <br/>
-                    <div>
-                        하루 두번!
+                        이슈크림은 다양한 관심사에 맞는 실시간 뉴스를 매일 제공하고 있어요 :)
+
                     </div>
                     <br/>
                     <br/>
                     <div style={{paddingBottom: "3rem"}}>
-                        AI가 자동생성하는 재미있는 뉴스레터를 읽어보세요.
+                        기사형, 대화형 두 가지 모드로 읽기 쉽게 뉴스레터를 접해보세요 -!
                     </div>
                 </div>
                 {
