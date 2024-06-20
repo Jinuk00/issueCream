@@ -105,7 +105,9 @@ function NewsDetail(){
                     </div>
                 </div>
                 <div className="base-blue2 main_padding pt2" style={{marginBottom: '2rem'}}>
-                    {newsInfo && newsInfo.newsTitle}
+                    <div className="font2">
+                        {newsInfo && newsInfo.newsTitle}
+                    </div>
                     <div className="pb3 text-color2">
                         {newsInfo && newsInfo.newsDate}
                     </div>
