@@ -25,12 +25,15 @@
 }
 
 .main_padding {
-  padding: 2rem;
+  padding: 1rem;
 }
 .pl1{
-  padding-left: 2rem;
+  padding-left: 3rem;
 }
 .pt1{
+  padding-top: 1.5rem;
+}
+.pt2{
   padding-top: 2rem;
 }
 .mr2 {
@@ -151,6 +154,10 @@ input:focus {
 .image-size{
   width: 3rem;
   height: 3rem;
+}
+.image-size2{
+  width: 2rem;
+  height: 2rem;
 }
 .user-info-size{
   width: 7rem;
@@ -311,7 +318,10 @@ input:focus {
 
 .slide {
   min-width: 100%;
-  padding:2rem;
+  padding-bottom:2rem;
+  padding-top:1.5rem;
+  padding-left:3rem;
+  padding-right: 3rem;
   text-align: center; /*글씨중앙정렬*/
   box-sizing: border-box;
   color:white;
@@ -349,6 +359,21 @@ input:focus {
 .text-color{
   color: #CCECFF;
 }
+.slider-buttons {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.slider-buttons button {
+  background-color: rgba(0, 0, 0, 0.0001);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
 .text-color2{
   color: #6F6E6E;
   font-size: 0.9rem;
@@ -365,7 +390,11 @@ input:focus {
 }
 .superfluity{
   padding-top: 1rem;
-  padding-bottom: 16rem;
+  padding-bottom: 19rem;
+}
+.mr6{
+  margin-right:1rem;
+  margin-left:1rem;
 }
 /*.sticky-header {*/
 /*  position: sticky;*/

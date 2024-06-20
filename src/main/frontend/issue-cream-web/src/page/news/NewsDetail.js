@@ -80,9 +80,9 @@ function NewsDetail(){
                         {newsInfo && newsInfo.categoryCode}
                     </div>
                 </div>
-                <div className="base-blue2 main_padding" style={{marginBottom: '2rem'}}>
+                <div className="base-blue2 main_padding pt2" style={{marginBottom: '2rem'}}>
                     {newsInfo && newsInfo.newsTitle}
-                        <div>
+                        <div className="pb3 text-color2">
                             {newsInfo.newsDate}
                         </div>
                         {/*<div className = "flex hashtag">*/}
@@ -90,7 +90,7 @@ function NewsDetail(){
                         {/*        # 카테고리*/}
                         {/*    </div>*/}
                         {/*</div>*/}
-                    <div className="flex">
+                    <div className="flex pt1">
                     <DetailKeyword keyword={newsInfo.keyWord1}/>
                     <DetailKeyword keyword={newsInfo.keyWord2}/>
                     <DetailKeyword keyword={newsInfo.keyWord3}/>

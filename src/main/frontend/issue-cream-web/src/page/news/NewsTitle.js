@@ -22,7 +22,7 @@ function NewsTitle(props) {
                                 <div className="text-color3 mr4">{item.categoryCode}</div>
                             </div>
                             <div className="flex mr1" style={{textAlign: 'left'}}>
-                                <img src="/images/test_image.png" className="test-image mr4"/>
+                                <img src="/images/preview_logo.png" className="test-image mr4"/>
                                 <Link to={'/newsDetail/'+item.id} className="mr5 text-center link">{item.newsTitle}</Link>
                             </div>
                         </div>

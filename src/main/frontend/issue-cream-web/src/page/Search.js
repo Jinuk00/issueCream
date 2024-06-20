@@ -52,21 +52,18 @@ function Search() {
                         />
                     </div>
                 </div>
-                <div style={{display: searchCheck ? "none" : ""}}>
-
-                    <br/>
-                    <br/>
-                    <div>
-                        이슈크림은 다양한 관심사에 맞는 실시간 뉴스를 매일 제공하고 있어요 :)
-
+                    <div className="text-left mr2" style={{display: searchCheck ? "none" : ""}}>
+                        <br/>
+                        <div>
+                            이슈크림은 다양한 관심사에 맞는 실시간 뉴스를 매일 제공하고 있어요 :)
+                        </div>
+                        <br/>
+                        <br/>
+                        <div style={{paddingBottom: "3rem"}}>
+                            기사형, 대화형 두 가지 모드로 읽기 쉽게 뉴스레터를 접해보세요 -!
+                        </div>
                     </div>
-                    <br/>
-                    <br/>
-                    <div style={{paddingBottom: "3rem"}}>
-                        기사형, 대화형 두 가지 모드로 읽기 쉽게 뉴스레터를 접해보세요 -!
-                    </div>
-                </div>
-                {
+                    {
                         searchCheck && <div className="mb2">' <span style={{color: "#2196F3"}}>{viewTitle}</span> ' 키워드에 해당하는 검색결과</div>
                 }
                 {

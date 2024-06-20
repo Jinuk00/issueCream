@@ -3,7 +3,7 @@ function DetailKeyword(props){
             <>
             {
                 props.keyword &&
-                <div className="flex hashtag">
+                <div className="flex hashtag mr6 ">
                     <div>
                         {props.keyword}
                     </div>
