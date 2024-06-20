@@ -1,7 +1,7 @@
 function IssueBanner(){
     return (
         <div className="flex">
-            <img src="/images/exampleImg.png" className="bannerStyle"/>
+            <img src="/images/main_image2.jpg" className="bannerStyle"/>
         </div>
     )
 }

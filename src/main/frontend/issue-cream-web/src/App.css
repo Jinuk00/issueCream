@@ -77,8 +77,6 @@
     width: 25rem;
     height: 14.06rem;
     object-fit: contain;
-    border-top: 0.1rem solid #EDEAEA;
-    border-bottom: 0.1rem solid #EDEAEA;
 }
 
 .btn{
@@ -393,7 +391,7 @@ input:focus {
   color: #0288D1;
 }
 .topic-background{
-  background: linear-gradient(0deg, #000000 2.5%, rgba(0, 0, 0, 0.790825) 25.38%, rgba(0, 0, 0, 0.749507) 49.23%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(0deg, #000000 2.5%, rgba(0, 0, 0, 0.790825) 25.38%, rgba(0, 0, 0, 0.749507) 49.23%, #FFF9DF 100%);
 }
 .scroll-container {
   padding-top: 2rem;
