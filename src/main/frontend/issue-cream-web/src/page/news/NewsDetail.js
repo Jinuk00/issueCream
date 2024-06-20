@@ -120,22 +120,22 @@ function NewsDetail(){
                 <div className="flex3 mr2">
                     <div className={`toggle-switch mr1 ${isToggled ? 'toggled' : ''}`} onClick={handleToggle}>
                         <div className="toggle-knob">
-                            <img src="/images/book2.png" alt="book" className={`${isToggled ? 'hidden' : ''}`}/>
-                            <img src="/images/talk2.png" alt="talk" className={`${isToggled ? '' : 'hidden'}`}/>
+                            <img src="/images/talk2.png" alt="book" className={`${isToggled ? 'hidden' : ''}`}/>
+                            <img src="/images/book2.png" alt="talk" className={`${isToggled ? '' : 'hidden'}`}/>
                         </div>
                     </div>
                 </div>
                 <div className={`mr2 stretched-text text-left ${isToggled ? 'hidden2' : ''}`}>
-                    {
-                            newsInfo &&
-                            processNewsContent(newsInfo.newsContent)
-                    }
-                </div>
-
-                <div className={`mr2 ${isToggled ? '' : 'hidden2'}`}>
                     <Talk1/>
                     <Talk2/>
                     <Talk3/>
+                </div>
+
+                <div className={`mr2 ${isToggled ? '' : 'hidden2'}`}>
+                    {
+                        newsInfo &&
+                        processNewsContent(newsInfo.newsContent)
+                    }
                 </div>
 
                 <div className="flex ">
