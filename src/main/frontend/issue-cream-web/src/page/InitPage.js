@@ -1,12 +1,13 @@
 import KakaoLogin from "../common/KakaoLogin";
 import {Link} from "react-router-dom";
+import React from "react";
 
 function InitPage(){
 
     return(
       <>
                 <div style={{paddingTop:'6rem'}}>
-                  <img src="/images/clova.png" alt = "Clova" style={{ width: '18rem' }}/>
+                  <img src="/images/clova2.png" alt = "Clova" style={{ width: '8rem' }}/>
               </div>
               <div style={{marginTop:'4rem'}}>
                   <img src="/images/main_logo.png" alt="Logo" style={{ width: '18rem' }} />
@@ -17,9 +18,9 @@ function InitPage(){
               <div style={{marginTop:"5rem"}}>
                   <KakaoLogin/>
               </div>
-              <div  className="font1" style={{marginTop:"3rem", paddingBottom:"6rem"}}>
-                  <Link to='/main' style={{ background:'#CCECFF', paddingLeft:"25px", paddingRight:"25px" , paddingTop:"13px", paddingBottom:"13px",borderRadius: '5px', cursor: "pointer", textDecoration:"none",color:"#000000"}}>
-                      로그인 없이 시작하기
+              <div  className="font1" style={{marginTop:"2rem", paddingBottom:"8rem"}}>
+                  <Link to='/main'>
+                      <img src="/images/start.png" className="image-size3" />
                   </Link>
               </div>
       </>

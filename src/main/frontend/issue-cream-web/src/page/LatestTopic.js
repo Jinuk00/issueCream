@@ -69,7 +69,6 @@ function LatestTopic(props){
                             ></div>
                         ))}
                     </div>
-                    <div className="slide-counter">{currentIndex + 1} / {5}</div>
                 </div>
                 <div className="slider-buttons">
                     <button onClick={handlePrev}><img src="/images/left.png" className=" image-size2"/>

@@ -40,14 +40,15 @@ function Search() {
                     <HeaderLogo/>
                 </div>
                 <div className="base-blue " style={{marginBottom: '2rem'}}>
-                    <div className="search">
+                    <div className="search font3">
                         <img src="/images/search.png" alt="search"
                              style={{width: '2rem', height: '2rem', margin: '1rem'}}/>
-                        <input className="no-border width" type="text"
+                        <input className="no-border width " type="text"
                                placeholder="궁금한 기사의 제목을 검색하세요!"
                                value={searchTitle}
                                onChange={searchInput}
                                onKeyUp={searchNews}
+                               style={{fontSize:'1rem'}}
                         />
                     </div>
                 </div>
@@ -63,7 +64,7 @@ function Search() {
                         </div>
                     </div>
                     {
-                        searchCheck && <div className="mb2">' <span style={{color: "#2196F3"}}>{viewTitle}</span> ' 키워드에 해당하는 검색결과</div>
+                        searchCheck && <div className="mb2 font2">' <span style={{color: "#2196F3"}}>{viewTitle}</span> ' 키워드에 해당하는 검색결과</div>
                 }
                 {
                         searchCheck && (news == null || news.length == 0 ? <div className="mb2">해당 검색 결과가 없어요 !</div> :

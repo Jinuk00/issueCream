@@ -161,6 +161,10 @@ input:focus {
   width: 2rem;
   height: 2rem;
 }
+.image-size3{
+  object-fit: contain;
+  width: 11.5rem;
+}
 .user-info-size{
   width: 7rem;
   height: 7rem;
@@ -191,6 +195,13 @@ input:focus {
   box-shadow: inset 0 -0.1rem 0 #EDEAEA;
   padding-bottom: 0.1rem;
 }
+.selectCategory4{
+  display: inline-block;
+  text-decoration-left:  underline;
+  text-decoration-color: black;
+  box-shadow: inset 0 -0.1rem 0 #A9A9A9;
+  padding-bottom: 0.1rem;
+}
 .selectCategory3{
   display: inline-block;
   font-family: "Pretendard-Bold";
@@ -201,7 +212,7 @@ input:focus {
 }
 
 .toggle-switch {
-  width: 4.3rem;
+  width: 3.9rem;
   height: 2rem;
   background-color: #e0e0e0;
   border-radius: 1.875rem;
@@ -223,7 +234,7 @@ input:focus {
 }
 
 .toggle-switch.toggled .toggle-knob {
-  left: 0.5rem;
+  left: 0.1rem;
 }
 
 .toggle-knob img {
@@ -418,6 +429,9 @@ input:focus {
 }
 .font2{
   font-family: "Pretendard-Bold";
+}
+.font3{
+  font-size: 0.85rem;
 }
 .stretched-text{
   letter-spacing: 0.1em;

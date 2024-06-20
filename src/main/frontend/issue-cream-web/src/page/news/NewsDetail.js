@@ -112,9 +112,7 @@ function NewsDetail(){
                     </div>
                 </div>
                 <div className="base-blue2 main_padding pt2" style={{marginBottom: '2rem'}}>
-                    <div className="font2">
                         {newsInfo && newsInfo.newsTitle}
-                    </div>
                     <div className="pb3 text-color2">
                         {newsInfo && newsInfo.newsDate}
                     </div>
@@ -132,14 +130,14 @@ function NewsDetail(){
                         </div>
                     </div>
                 </div>
-                <div className={`mr2 ${isToggled ? '' : 'hidden2'}`}>
+                <div className={`mr2 text-left ${isToggled ? '' : 'hidden2'}`}>
                     {
                             (newsInfo && newsInfo.newsContent) &&
                             processNewsContent(newsInfo.newsContent)
                     }
                 </div>
 
-                <div className={`mr2 ${isToggled ? 'hidden2' : ''}`}>
+                <div className={`mr2  ${isToggled ? 'hidden2' : ''}`}>
                     {
                             (newsInfo && newsInfo.newsChatContent) &&
                             processNewsChatContent(newsInfo.newsChatContent)

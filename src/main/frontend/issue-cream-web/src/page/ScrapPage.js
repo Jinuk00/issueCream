@@ -25,9 +25,9 @@ function ScrapPage(){
             <>
                 <div className="superfluity">
                     <PageHeader/>
-                    <div className="mb2 ">스크랩한 뉴스레터</div>
+                    <div className="mb2 font2">스크랩한 뉴스레터</div>
                     {
-                        (news && news.length!==0) ? <NewsTitle news={news}/> : <div>스크랩한 뉴스레터가 없습니다.</div>
+                        (news && news.length!==0) ? <NewsTitle news={news}/> : <div className="p3">스크랩한 뉴스레터가 없습니다.</div>
                     }
                 </div>
             </>

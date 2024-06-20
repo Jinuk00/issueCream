@@ -62,7 +62,7 @@ function UserInfo() {
                 <HeaderLogo/>
             </div>
             <div className="base-blue">
-                <div style={{padding: '2rem'}}>
+                <div className="font2" style={{padding: '2rem'}}>
                     로그인 정보
                 </div>
                 <div style={{marginBottom: '2rem'}}>
@@ -72,7 +72,7 @@ function UserInfo() {
                     카카오톡 아이디: {email}
                 </div>
                 <div style={{paddingBottom: '2rem'}}>
-                    스크랩한 뉴스레터: <span className=" btn selectCategory2" onClick={gotoScrapPage}>바로가기</span>
+                    <span className=" btn selectCategory4" onClick={gotoScrapPage}>스크랩한 뉴스레터 바로가기</span>
                 </div>
             </div>
 
