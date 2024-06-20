@@ -1,11 +1,14 @@
 package com.clova.issuecream.config.filter;
 
+import com.clova.issuecream.common.exception.UserException;
 import com.clova.issuecream.config.JWTUtil;
 import com.clova.issuecream.config.dto.CustomOAuth2User;
 import com.clova.issuecream.login.dto.MemberDto;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +20,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -39,6 +44,32 @@ public class JWTFilter extends OncePerRequestFilter {
 
         // 유효한지 확인 후 클라이언트로 상태 코드 응답
         // Token 만료 확인
+        try {
+            if (jwtUtil.isExpired(originToken)) {
+
+            }
+        } catch (ExpiredJwtException jwtException) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+//        if (jwtUtil.isExpired(originToken)) {
+//            Optional<Cookie> refresh = Arrays.stream(request.getCookies()).filter(i -> i.getName().equals("refresh"))
+//                    .findAny();
+//            if (refresh.isEmpty()) {
+//                throw new UserException("로그아웃 됐습니다. 다시 로그인 해주세요.");
+//            }
+//            String refreshToken = refresh.get().getValue();
+//
+//            if (jwtUtil.isExpired(refreshToken)) {
+//                throw new UserException("로그아웃 됐습니다. 다시 로그인 해주세요.");
+//            }
+//
+//            String email = jwtUtil.getEmail(refreshToken);
+//            String role = jwtUtil.getRole(refreshToken);
+//            String newAccessToken = jwtUtil.createJwt("access", email, role, 5 * 60 * 1000L); // 5 minutes
+//
+//            response.setHeader("access", newAccessToken);
+//        }
 //        try {
 //            if(jwtUtil.isExpired(originToken)) {
 //                PrintWriter writer = response.getWriter();

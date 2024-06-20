@@ -9,6 +9,8 @@ import Talk1 from "../news/Talk1";
 import Talk2 from "../news/Talk2";
 import Talk3 from "../news/Talk3";
 import DetailKeyword from "./DetailKeyword";
+import emojiDictionary from "emoji-dictionary";
+
 function NewsDetail(){
     let {id} = useParams();
     const [newsInfo, setNewsInfo] = useState({
@@ -71,20 +73,42 @@ function NewsDetail(){
         });
     }
 
+    const unicodeToEmoji = (text) => {
+        return text.split('|||\\').map(part => {
+            console.log("part", part);
+            return part.replace(/U([0-9A-Fa-f]{8})/g, (match, p1) => {
+                const emojiUnicode = `\\u${p1}`;
+                console.log(emojiUnicode);
+                console.log("match",match);
+                console.log(emojiDictionary.getUnicode(emojiUnicode) || String.fromCodePoint(parseInt(p1, 16)));
+                return emojiDictionary.getUnicode(emojiUnicode) || String.fromCodePoint(parseInt(p1, 16));
+            });
+        }).join('');
+    };
+
+    const processNewsContent = (content) => {
+        return unicodeToEmoji(content).split("\n").map((item, index) => (
+                <React.Fragment key={index}>
+                    {item}
+                    <br />
+                </React.Fragment>
+        ));
+    };
+
     return (
             <>
                 <PageHeader/>
                 <Category category={newsInfo && newsInfo.categoryCode}/>
                 <div className="flex">
-                    <div style={{marginBottom: '2rem', marginTop:'2rem'}} className="selectCategory3">
+                    <div style={{marginBottom: '2rem', marginTop: '2rem'}} className="selectCategory3">
                         {newsInfo && newsInfo.categoryCode}
                     </div>
                 </div>
                 <div className="base-blue2 main_padding pt2" style={{marginBottom: '2rem'}}>
                     {newsInfo && newsInfo.newsTitle}
-                        <div className="pb3 text-color2">
-                            {newsInfo && newsInfo.newsDate}
-                        </div>
+                    <div className="pb3 text-color2">
+                        {newsInfo && newsInfo.newsDate}
+                    </div>
                     <div className="flex pt1">
                         <DetailKeyword keyword={newsInfo.keyWord1}/>
                         <DetailKeyword keyword={newsInfo.keyWord2}/>
@@ -101,13 +125,8 @@ function NewsDetail(){
                 </div>
                 <div className={`mr2 ${isToggled ? 'hidden2' : ''}`}>
                     {
-                        newsInfo &&
-                        newsInfo.newsContent.split("\n").map((item, index) => (
-                                    <React.Fragment key={index}>
-                                        {item}
-                                        <br/>
-                                    </React.Fragment>
-                            ))
+                            newsInfo &&
+                            processNewsContent(newsInfo.newsContent)
                     }
                 </div>
 

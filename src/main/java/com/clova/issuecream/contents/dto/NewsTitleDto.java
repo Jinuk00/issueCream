@@ -22,8 +22,8 @@ public class NewsTitleDto {
         if (newsDate == null || newsDate.equals("")) {
             return "";
         }
-        newsDate = newsDate.replaceAll("AM", "");
-        newsDate = newsDate.replaceAll("PM", "");
+        newsDate = newsDate.replaceAll("am", "");
+        newsDate = newsDate.replaceAll("pm", "");
         return LocalDate.parse(newsDate, DateTimeFormatter.ofPattern("yyyyMMdd")).format(DateTimeFormatter.ofPattern("yyyy.MM.dd"));
     }
 }

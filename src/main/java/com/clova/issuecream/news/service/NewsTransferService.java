@@ -11,10 +11,20 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,51 +35,73 @@ public class NewsTransferService {
 
     @Transactional
     public void transNews() {
-        ClassPathResource resource = new ClassPathResource("news/FINAL_DATA_2024-06-09 20_51_19_duration_1503.2028694152832.json");
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        List<NewsTransDto> newsTransDtos = new ArrayList<>();
-        try {
-            newsTransDtos = Arrays.asList(objectMapper.readValue(resource.getInputStream(), NewsTransDto[].class));
+        List<String> fileNames;
+        ClassPathResource dir = new ClassPathResource("news");
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(dir.getInputStream()))) {
+            fileNames = reader.lines().collect(Collectors.toList());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        log.info("리스트 {}", fileNames);
+
+//        LocalDateTime now = LocalDateTime.now();
+//        ChronoUnit.
+//        fileNames.stream().filter(i -> i.contains("2024_06_19"));
         List<NewsBoard> saveList = new ArrayList<>();
-        for (NewsTransDto dto : newsTransDtos) {
-            NewsBoard newsBoard = NewsBoard.builder()
-                    .categoryCode(CategoryCode.transByName(dto.getCategory())).build();
-            String content = dto.getContent();
-            log.info("확인 {}", content);
-            int keyWordindex = content.lastIndexOf("키워드");//추후 수정
-            if (keyWordindex == -1) {
-                continue;
+        for (String fileName : fileNames) {
+            ClassPathResource resource = new ClassPathResource("news/" + fileName);
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            List<NewsTransDto> newsTransDtos = new ArrayList<>();
+            try {
+                newsTransDtos = Arrays.asList(objectMapper.readValue(resource.getInputStream(), NewsTransDto[].class));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-            String keyWord = content.substring(keyWordindex+6);
-            content = content.substring(0, keyWordindex);
-            int titleStartIndex = content.indexOf("제목");
-            int titleEndIndex = content.indexOf("\n", titleStartIndex);
-            String title = content.substring(titleStartIndex + 5, titleEndIndex);
-            String mainContent = content.substring(titleEndIndex);
-            mainContent = mainContent.substring(mainContent.indexOf("\n") + 1);
-            String[] split = mainContent.split("\n");
-            StringBuilder newsContent = new StringBuilder();
-            for (String s : split) {
-                if (s.equals("")) {
+            for (NewsTransDto dto : newsTransDtos) {
+                NewsBoard newsBoard = NewsBoard.builder()
+                        .categoryCode(CategoryCode.transByName(dto.getCategory())).build();
+                String content = dto.getContent();
+                log.info("확인 {}", content);
+                int keyWordindex = content.lastIndexOf("키워드");//추후 수정
+                if (keyWordindex == -1) {
                     continue;
                 }
-                newsContent.append(s).append("\n");
+                String keyWord = content.substring(keyWordindex+6);
+                content = content.substring(0, keyWordindex);
+
+                int titleStartIndex = content.indexOf("제목");
+                int titleEndIndex = content.indexOf("\n", titleStartIndex);
+                String title = content.substring(titleStartIndex + 5, titleEndIndex);
+                String mainContent = content.substring(titleEndIndex);
+                mainContent = mainContent.substring(mainContent.indexOf("\n") + 1);
+                String[] split = mainContent.split("\n");
+                StringBuilder newsContent = new StringBuilder();
+                for (String s : split) {
+                    if (s.equals("")) {
+                        continue;
+                    }
+                    newsContent.append(s).append("\n");
+                }
+                StringBuilder keyWords = new StringBuilder();
+                newsBoard.setKeyWords(keyWord.split(","));
+                if (newsBoard.getKeyWord1().length() >= 10) {
+                    continue;
+                }
+                String newsType = fileName.contains("smry") ? "smry" : "chat";
+                Optional<NewsBoard> checkNews = saveList.stream().filter(i -> i.getNewsTitle().equals(title)).findAny();
+                if (checkNews.isPresent()) {
+                    NewsBoard existNews = checkNews.get();
+                    existNews.createContent(title, newsContent.toString(), newsType);
+                } else {
+                    newsContent.insert(0, keyWords + "\n");
+                    newsBoard.createContent(title, newsContent.toString(),newsType);
+                    newsBoard.setNewsDate(fileName.substring(0, 13).replaceAll("_", ""));
+                    saveList.add(newsBoard);
+                }
+                log.info("객체 {}", newsBoard);
             }
-            StringBuilder keyWords = new StringBuilder();
-            newsBoard.setKeyWords(keyWord.split(","));
-            if (newsBoard.getKeyWord1().length() >= 10) {
-                continue;
-            }
-            newsContent.insert(0, keyWords + "\n");
-            newsBoard.createContent(title, newsContent.toString());
-            newsBoard.setNewsDate("20240609");
-            saveList.add(newsBoard);
-            log.info("객체 {}", newsBoard);
+            newsBoardRepository.saveAll(saveList);
         }
-        newsBoardRepository.saveAll(saveList);
     }
 }

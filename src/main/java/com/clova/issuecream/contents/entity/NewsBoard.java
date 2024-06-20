@@ -36,6 +36,10 @@ public class NewsBoard {
     @Comment("뉴스 본문")
     String newsContent;
 
+    @Column(name = "news_chat_content")
+    @Comment("뉴스 대화형 본문")
+    String newsChatContent;
+
     @Column(name = "news_dt")
     @Comment("뉴스 기사 날짜")
     String newsDate;
@@ -52,10 +56,17 @@ public class NewsBoard {
     @Comment("키워드3")
     String keyWord3;
 
+    @Column(name = "type")
+    @Comment("뉴스 타입")
+    String type;
 
-    public void createContent(String title, String newsContent) {
+    public void createContent(String title, String newsContent, String newsType) {
         this.newsTitle = title;
-        this.newsContent = newsContent;
+        if (newsType.equals("smry")) {
+            this.newsContent = newsContent;
+        } else {
+            this.newsChatContent = newsContent;
+        }
     }
 
     public void setKeyWords(String[] keyWords) {
