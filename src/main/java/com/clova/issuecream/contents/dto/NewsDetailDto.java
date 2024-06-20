@@ -14,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 public class NewsDetailDto {
     String newsTitle;
     String newsContent;
+    String newsChatContent;
     CategoryCode categoryCode;
     String newsDate;
     String keyWord1;

@@ -56,7 +56,7 @@ function LatestTopic(props){
                 <div className="slider"
                      style={{transform: `translateX(-${currentIndex * 100}%)`, transition: 'transform 1.5s ease'}}>
                     {props.topics.map((item, index) => (
-                        <div className="slide text-left" key={index} onClick={()=>gotoNewsDetail(item.id)}>{item.newsTitle}</div>
+                        <div className="slide text-left btn" key={index} onClick={()=>gotoNewsDetail(item.id)}>{item.newsTitle}</div>
                     ))}
                 </div>
                 <div className="flex">

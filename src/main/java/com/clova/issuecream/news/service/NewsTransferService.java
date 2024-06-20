@@ -44,10 +44,12 @@ public class NewsTransferService {
         }
         log.info("리스트 {}", fileNames);
 
-//        LocalDateTime now = LocalDateTime.now();
-//        ChronoUnit.
-//        fileNames.stream().filter(i -> i.contains("2024_06_19"));
+        LocalDateTime now = LocalDateTime.now();
+        LocalDate today = LocalDate.now();
+        String todayDate = today.format(DateTimeFormatter.ofPattern("yyyy_MM_dd"));
         List<NewsBoard> saveList = new ArrayList<>();
+        fileNames = fileNames.stream().filter(i -> i.contains(todayDate))
+                .collect(Collectors.toList());
         for (String fileName : fileNames) {
             ClassPathResource resource = new ClassPathResource("news/" + fileName);
             ObjectMapper objectMapper = new ObjectMapper();

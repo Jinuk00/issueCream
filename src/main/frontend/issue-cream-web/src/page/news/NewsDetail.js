@@ -16,6 +16,7 @@ function NewsDetail(){
     const [newsInfo, setNewsInfo] = useState({
         newsTitle:'',
         newsContent: '',
+        newsChatContent: '',
         categoryCode: '',
         newsDate:'',
         keyWord1: '',
@@ -48,9 +49,7 @@ function NewsDetail(){
                     text: 'Check out this site!',
                     url: window.location.href,
                 });
-                console.log('Successfully shared');
             } else {
-                console.log('Share not supported on this browser, do it the old way.');
             }
         } catch (error) {
             console.error('Error sharing:', error);
@@ -58,7 +57,6 @@ function NewsDetail(){
     };
 
     const createBookmark = ()=>{
-        console.log("클릭");
         if (!localStorage.getItem("access")) {
             alert("로그인이 필요한 서비스 입니다.");
             return;
@@ -75,12 +73,8 @@ function NewsDetail(){
 
     const unicodeToEmoji = (text) => {
         return text.split('|||\\').map(part => {
-            console.log("part", part);
             return part.replace(/U([0-9A-Fa-f]{8})/g, (match, p1) => {
                 const emojiUnicode = `\\u${p1}`;
-                console.log(emojiUnicode);
-                console.log("match",match);
-                console.log(emojiDictionary.getUnicode(emojiUnicode) || String.fromCodePoint(parseInt(p1, 16)));
                 return emojiDictionary.getUnicode(emojiUnicode) || String.fromCodePoint(parseInt(p1, 16));
             });
         }).join('');
@@ -91,6 +85,19 @@ function NewsDetail(){
                 <React.Fragment key={index}>
                     {item}
                     <br />
+                </React.Fragment>
+        ));
+    };
+
+    const processNewsChatContent = (content) => {
+        return unicodeToEmoji(content).split("\n").map((item, index) => (
+                <React.Fragment key={index}>
+                    {
+                        index % 3 === 0 ? <Talk1 content={item}/> :
+                                index % 3 === 1 ? <Talk2 content={item}/> :
+                                        index % 3 === 2 ? <Talk3 content={item}/> : ''
+                    }
+                    <br/>
                 </React.Fragment>
         ));
     };
@@ -127,15 +134,16 @@ function NewsDetail(){
                 </div>
                 <div className={`mr2 stretched-text text-left ${isToggled ? 'hidden2' : ''}`}>
                     {
-                            newsInfo &&
+                        (newsInfo && newsInfo.newsContent) &&
                             processNewsContent(newsInfo.newsContent)
                     }
                 </div>
 
                 <div className={`mr2 ${isToggled ? '' : 'hidden2'}`}>
-                    <Talk1/>
-                    <Talk2/>
-                    <Talk3/>
+                    {
+                        (newsInfo && newsInfo.newsChatContent) &&
+                            processNewsChatContent(newsInfo.newsChatContent)
+                    }
                 </div>
 
                 <div className="flex ">

@@ -24,7 +24,7 @@ public class NewsBoardService {
     }
 
     public Page<NewsTitleDto> searchByCategory(String category, int page) {
-        PageRequest pageRequest = PageRequest.of(page, 5);
+        PageRequest pageRequest = PageRequest.of(page, 10);
         return newsBoardRepository.findByCategory(CategoryCode.transByUrl(category), pageRequest);
     }
 

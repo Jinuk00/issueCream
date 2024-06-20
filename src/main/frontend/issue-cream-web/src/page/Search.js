@@ -23,7 +23,6 @@ function Search() {
             axios.post("/api/news/search/title", "searchTitle=" + searchTitle)
                     .then((res) => {
                         if (res.data.resultCode == "OK") {
-                            console.log(res.data.data);
                             setNews(res.data.data.newsData);
                             setViewTitle(res.data.data.searchTitle);
                         }

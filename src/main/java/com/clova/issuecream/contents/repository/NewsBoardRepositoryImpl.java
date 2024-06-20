@@ -72,6 +72,7 @@ public class NewsBoardRepositoryImpl implements NewsBoardRepositoryCustom {
                         NewsDetailDto.class,
                         newsBoard.newsTitle,
                         newsBoard.newsContent,
+                        newsBoard.newsChatContent,
                         newsBoard.categoryCode,
                         newsBoard.newsDate,
                         newsBoard.keyWord1,

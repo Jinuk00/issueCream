@@ -5,7 +5,6 @@ import HeaderLogo from "../common/HeaderLogo";
 function PageHeader(){
     const navigate = useNavigate();
     const gotoMain=()=>{
-        console.log("메인클릭");
         navigate("/main");
     }
     return (

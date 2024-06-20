@@ -1,11 +1,11 @@
 import React from "react";
 
-function Talk2(){
+function Talk2(props){
     return (
         <div className="chat-container reverse">
             <img src="/images/Characters_image1.png" className="character-logo2"/>
             <div className="speech-bubble2">
-                <p>아무런 글이나 써보겠습니다.</p>
+                {props.content}
             </div>
         </div>
     )

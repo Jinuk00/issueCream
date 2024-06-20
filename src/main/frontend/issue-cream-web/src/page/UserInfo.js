@@ -26,27 +26,25 @@ function UserInfo() {
                 setBookmarkCnt(res.data.data.scrapCnt);
             }
         }).catch((error) => {
-            console.log(error);
         });
     }, []);
 
     const logout = () => {
         axiosUtils.post("/api/user/logout")
             .then((res) => {
-                console.log(res);
                 if (res.status == "200") {
                     localStorage.removeItem("access");
                     alert("로그아웃 됐습니다.");
                     navigate("/");
                 }
             }).catch((error) => {
+            localStorage.removeItem("access");
         });
     }
 
     const deleteUser = () => {
         axiosUtils.delete("/api/user/info")
             .then((res) => {
-                console.log(res);
                 alert(res.data.message)
                 localStorage.removeItem("access");
                 if (res.data.resultCode == "OK") {
