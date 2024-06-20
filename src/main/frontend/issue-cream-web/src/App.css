@@ -374,6 +374,7 @@ input:focus {
   display: flex;
   justify-content: space-between;
   transform: translateY(-50%);
+  pointer-events: none;
 }
 
 .slider-buttons button {
@@ -381,6 +382,7 @@ input:focus {
   color: white;
   border: none;
   cursor: pointer;
+  pointer-events: auto;
 }
 .text-color2{
   color: #6F6E6E;
@@ -415,4 +417,10 @@ input:focus {
   text-decoration-left:  underline;
   text-decoration-color: black;
   font-size: 0.85rem;
+}
+
+.stretched-text{
+  letter-spacing: 0.1em;
+  word-spacing: 0.1em;
+  line-height: 1.3em;
 }

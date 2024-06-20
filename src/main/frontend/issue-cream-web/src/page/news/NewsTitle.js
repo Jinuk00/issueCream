@@ -1,14 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 
 function NewsTitle(props) {
 
-    // const formatDate = (dateString) => {
-    //     const year = dateString.substring(0, 4);
-    //     const month = dateString.substring(4, 6);
-    //     const day = dateString.substring(6, 8);
-    //     return `${year}. ${month}. ${day}`;
-    // };
+    const ImageSource = (categoryCode) => {
+        switch(categoryCode) {
+            case '스포츠':
+                return '/images/sports_logo.png';
+            case 'IT':
+                return '/images/it_logo.png';
+            case '미디어':
+                return '/images/media_logo.png';
+            case '경제':
+                return '/images/economy_logo.png';
+            case '시사':
+                return '/images/preview_logo.png';
+            default:
+                return '/images/test_image.png';
+        }
+    }
 
     return (
         <>
@@ -22,8 +32,9 @@ function NewsTitle(props) {
                                 <div className="text-color3 mr4">{item.categoryCode}</div>
                             </div>
                             <div className="flex mr1" style={{textAlign: 'left'}}>
-                                <img src="/images/preview_logo.png" className="test-image mr4"/>
-                                <Link to={'/newsDetail/'+item.id} className="mr5 text-center link">{item.newsTitle}</Link>
+                                <img src={ImageSource(item.categoryCode)} className="test-image mr4"/>
+                                <Link to={'/newsDetail/' + item.id}
+                                      className="mr5 text-center link">{item.newsTitle}</Link>
                             </div>
                         </div>
                         {index === props.news.length - 1 && (
