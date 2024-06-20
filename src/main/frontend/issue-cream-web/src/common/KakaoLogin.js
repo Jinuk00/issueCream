@@ -3,7 +3,7 @@ function KakaoLogin(){
     return(
             <>
                 <a href={kakaoOauthUrl}>
-                    <img src="/images/kakao_login_medium_narrow.png" />
+                    <img src="/images/kakao_login_medium_narrow.png" className="image-size3"/>
                 </a>
                 <input type="hidden" value='%REACT_APP_TEST_KEY%'/>
             </>

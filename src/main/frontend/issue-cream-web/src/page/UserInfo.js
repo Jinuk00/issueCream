@@ -66,7 +66,7 @@ function UserInfo() {
                     로그인 정보
                 </div>
                 <div style={{marginBottom: '2rem'}}>
-                    <img src="/images/profile.png" className="user-info-size"/>
+                    <img src="/images/profile2.png" className="user-info-size"/>
                 </div>
                 <div style={{marginBottom: '2rem'}}>
                     카카오톡 아이디: {email}
