@@ -134,15 +134,15 @@ function NewsDetail(){
                 </div>
                 <div className={`mr2 ${isToggled ? '' : 'hidden2'}`}>
                     {
-                        (newsInfo && newsInfo.newsChatContent) &&
-                            processNewsChatContent(newsInfo.newsChatContent)
+                            (newsInfo && newsInfo.newsContent) &&
+                            processNewsContent(newsInfo.newsContent)
                     }
                 </div>
 
-                <div className={`mr2 ${isToggled ? '' : 'hidden2'}`}>
+                <div className={`mr2 ${isToggled ? 'hidden2' : ''}`}>
                     {
-                        newsInfo &&
-                        processNewsContent(newsInfo.newsContent)
+                            (newsInfo && newsInfo.newsChatContent) &&
+                            processNewsChatContent(newsInfo.newsChatContent)
                     }
                 </div>
 

@@ -50,6 +50,7 @@ public class NewsTransferService {
         List<NewsBoard> saveList = new ArrayList<>();
         fileNames = fileNames.stream().filter(i -> i.contains(todayDate))
                 .collect(Collectors.toList());
+        
         for (String fileName : fileNames) {
             ClassPathResource resource = new ClassPathResource("news/" + fileName);
             ObjectMapper objectMapper = new ObjectMapper();
