@@ -1,31 +1,24 @@
 import {Link, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
-import axios from "axios";
 import axiosUtils from "../utils/AxiosUtils";
 import HeaderLogo from "../common/HeaderLogo";
+import {getToken} from "../utils/TokenUtils";
 
 function UserInfo() {
     const [email, setEmail] = useState("");
     const navigate = useNavigate();
-    const [bookmarkCnt, setBookmarkCnt] = useState(0);
     useEffect(() => {
-        if (!localStorage.getItem("access")) {
+        if (!getToken()) {
             alert("로그인이 필요합니다.");
             navigate('/userLogin');
             window.location.reload();
         }
-        axios.post('/api/user/info', {}, {
-            headers: {
-                'Content-Type': 'application/json',
-                'access': localStorage.getItem("access")
-            },
-            withCredentials: true,
-        }).then((res) => {
-            if (res.data.resultCode == "OK") {
-                setEmail(res.data.data.email);
-                setBookmarkCnt(res.data.data.scrapCnt);
-            }
-        }).catch((error) => {
+        axiosUtils.post('/api/user/info')
+                .then((res) => {
+                    if (res.data.resultCode == "OK") {
+                        setEmail(res.data.data.email);
+                    }
+                }).catch((error) => {
         });
     }, []);
 
