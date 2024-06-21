@@ -130,14 +130,14 @@ function NewsDetail(){
                         </div>
                     </div>
                 </div>
-                <div className={`mr2 text-left ${isToggled ? '' : 'hidden2'}`}>
+                <div className={`mr2 text-left stretched-text ${isToggled ? '' : 'hidden2'}`}>
                     {
                             (newsInfo && newsInfo.newsContent) &&
                             processNewsContent(newsInfo.newsContent)
                     }
                 </div>
 
-                <div className={`mr2  ${isToggled ? 'hidden2' : ''}`}>
+                <div className={`mr2  stretched-text ${isToggled ? 'hidden2' : ''}`}>
                     {
                             (newsInfo && newsInfo.newsChatContent) &&
                             processNewsChatContent(newsInfo.newsChatContent)

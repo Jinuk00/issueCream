@@ -107,7 +107,9 @@
 .mb2{
   margin-bottom: 2rem;
 }
-
+.mb3{
+  margin-bottom: 4rem;
+}
 .no-border{
   border-width: 0;
   background-color: #CCECFF;
