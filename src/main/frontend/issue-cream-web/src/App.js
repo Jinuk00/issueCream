@@ -1,10 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
 import Router from "./router/Router";
-// import axios from "axios";
+import {useEffect} from "react";
+import {getToken} from "./utils/TokenUtils";
 
 function App() {
     // axios.defaults.withCredentials = true; // withCredentials 전역 설정
+    useEffect(() => {
+        getToken();
+    }, []);
     return (
             <>
                 <Router/>

@@ -8,6 +8,8 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class NewsTransDto {
+    String title;
     String category;
-    String content;
+    String content_chat;
+    String content_smry;
 }

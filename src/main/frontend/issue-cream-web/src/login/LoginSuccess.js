@@ -8,9 +8,13 @@ function LoginSuccess(){
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         const accessToken = params.get("code");
-
+        const now = new Date();
+        const authToken ={
+            token: accessToken,
+            expire: now.getTime() * 60 * 60 * 1000,
+        }
         if (accessToken) {
-            localStorage.setItem("access", accessToken);
+            localStorage.setItem("access", JSON.stringify(authToken));
         }
         navigate("/main");
     });

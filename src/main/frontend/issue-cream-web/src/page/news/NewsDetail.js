@@ -10,6 +10,7 @@ import Talk2 from "../news/Talk2";
 import Talk3 from "../news/Talk3";
 import DetailKeyword from "./DetailKeyword";
 import emojiDictionary from "emoji-dictionary";
+import {getToken} from "../../utils/TokenUtils";
 
 function NewsDetail(){
     let {id} = useParams();
@@ -57,7 +58,7 @@ function NewsDetail(){
     };
 
     const createBookmark = ()=>{
-        if (!localStorage.getItem("access")) {
+        if (!getToken()) {
             alert("로그인이 필요한 서비스 입니다.");
             return;
         }
