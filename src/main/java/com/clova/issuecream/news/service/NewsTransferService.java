@@ -9,22 +9,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,6 +31,7 @@ public class NewsTransferService {
 
     private final NewsBoardRepository newsBoardRepository;
 
+    @Scheduled(cron = "0 45 5,17 * * *")
     @Transactional
     public void transNews() {
         List<String> fileNames;
@@ -44,10 +42,9 @@ public class NewsTransferService {
             throw new RuntimeException(e);
         }
 
-//        String timePart = LocalDateTime.now()
-//                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss a"))
-//                .contains("오전") ? "am" : "pm";
-        String timePart = "am";
+        String timePart = LocalDateTime.now()
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss a"))
+                .contains("오전") ? "am" : "pm";
         LocalDate today = LocalDate.now();
         String todayDate = today.format(DateTimeFormatter.ofPattern("yyyy_MM_dd"));
 
@@ -75,14 +72,14 @@ public class NewsTransferService {
                 content = makeKeyWords(newsBoard, content, NewsType.요약형);
 
                 //메인 컨텐츠 분리 작업
-                String newsContent = makeNewsContent(content,NewsType.요약형);
+                String newsContent = makeNewsContent(content, NewsType.요약형);
 
                 //대화형
                 String chatContent = dto.getContent_chat();
 
                 //키워드 작업
                 chatContent = makeKeyWords(newsBoard, chatContent, NewsType.대화형);
-                
+
                 //메인 컨텐츠 분리 작업
                 String newsChatContent = makeNewsContent(chatContent, NewsType.대화형);
 
