@@ -17,6 +17,7 @@ function LoginSuccess(){
             localStorage.setItem("access", JSON.stringify(authToken));
         }
         navigate("/main");
+        window.location.reload();
     });
 }
 

@@ -11,7 +11,6 @@ function UserInfo() {
         if (!getToken()) {
             alert("로그인이 필요합니다.");
             navigate('/userLogin');
-            window.location.reload();
         }
         axiosUtils.post('/api/user/info')
                 .then((res) => {
