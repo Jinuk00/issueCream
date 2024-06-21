@@ -18,6 +18,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 import static com.clova.issuecream.contents.entity.QNewsBoard.*;
+import static com.querydsl.core.types.dsl.Expressions.numberTemplate;
 
 @Repository
 @RequiredArgsConstructor
@@ -114,6 +115,15 @@ public class NewsBoardRepositoryImpl implements NewsBoardRepositoryCustom {
                 .orderBy(newsBoard.newsDate.desc(),
                         newsBoard.id.desc())
                 .limit(5L)
+                .fetch();
+    }
+
+    @Override
+    public List<Long> findRandom() {
+        return queryFactory.select(newsBoard.id)
+                .from(newsBoard)
+                .orderBy(numberTemplate(Double.class, "RAND()").asc())
+                .limit(5)
                 .fetch();
     }
 }

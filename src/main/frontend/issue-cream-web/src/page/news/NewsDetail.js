@@ -1,4 +1,4 @@
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import Category from "../Category";
 import PageHeader from "../PageHeader";
@@ -14,6 +14,7 @@ import {getToken} from "../../utils/TokenUtils";
 
 function NewsDetail(){
     let {id} = useParams();
+    const navigate = useNavigate();
     const [newsInfo, setNewsInfo] = useState({
         newsTitle:'',
         newsContent: '',
@@ -34,7 +35,11 @@ function NewsDetail(){
     useEffect(()=>{
         axiosUtils.post('/api/news/searchDetail/' + id)
                 .then((res) => {
-                    if (res.data.resultCode == "OK") {
+                    if (res.data.resultCode === "OK") {
+                        if (res.data.data == null) {
+                            alert("없는 페이지입니다.");
+                            navigate(-1);
+                        }
                         setNewsInfo(res.data.data);
                     }
                 }).catch((error) => {
@@ -113,14 +118,14 @@ function NewsDetail(){
                     </div>
                 </div>
                 <div className="base-blue2 main_padding pt2" style={{marginBottom: '2rem'}}>
-                        {newsInfo && newsInfo.newsTitle}
+                    {newsInfo && newsInfo.newsTitle}
                     <div className="pb3 text-color2">
                         {newsInfo && newsInfo.newsDate}
                     </div>
                     <div className="flex pt1">
-                        <DetailKeyword keyword={newsInfo.keyWord1}/>
-                        <DetailKeyword keyword={newsInfo.keyWord2}/>
-                        <DetailKeyword keyword={newsInfo.keyWord3}/>
+                        {(newsInfo && newsInfo.keyWord1) && <DetailKeyword keyword={newsInfo.keyWord1}/>}
+                        {(newsInfo && newsInfo.keyWord2) && <DetailKeyword keyword={newsInfo.keyWord2}/>}
+                        {(newsInfo && newsInfo.keyWord3) && <DetailKeyword keyword={newsInfo.keyWord3}/>}
                     </div>
                 </div>
                 <div className="flex3 mr2">

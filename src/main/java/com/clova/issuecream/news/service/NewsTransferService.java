@@ -34,6 +34,7 @@ public class NewsTransferService {
     @Scheduled(cron = "0 45 5,17 * * *")
     @Transactional
     public void transNews() {
+        log.info("데이터 이관시작!!!");
         List<String> fileNames;
         ClassPathResource dir = new ClassPathResource("news");
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(dir.getInputStream()))) {

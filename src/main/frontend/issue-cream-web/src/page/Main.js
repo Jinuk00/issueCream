@@ -1,4 +1,4 @@
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import Navbar from "../common/Navbar";
 import {useEffect, useState} from "react";
@@ -7,6 +7,7 @@ import Footer from "../common/Footer";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 function Main() {
+    const navigate = useNavigate();
     const [news, setNews] = useState([]);
     let {category} = useParams();
     const [categoryNm, setCategoryNm] = useState();
@@ -16,7 +17,12 @@ function Main() {
         setPage(0);
         setNews([]);
         if (category) {
-            setCategoryNm(transCategory);
+            let checkCategory = transCategory();
+            if (!checkCategory) {
+                alert("잘못된 카테고리입니다.");
+                navigate(-1);
+            }
+            setCategoryNm(checkCategory);
         } else {
             setCategoryNm('');
         }
@@ -57,6 +63,7 @@ function Main() {
         if (category === "economy") {
             return "경제";
         }
+        return null;
     }
     return (
             <>

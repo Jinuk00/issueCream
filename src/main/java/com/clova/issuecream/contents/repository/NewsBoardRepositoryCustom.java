@@ -20,4 +20,6 @@ public interface NewsBoardRepositoryCustom {
     Page<NewsTitleDto> findAllByPageable(Pageable pageable);
 
     List<NewsTitleDto> findHotTopics();
+
+    List<Long> findRandom();
 }
