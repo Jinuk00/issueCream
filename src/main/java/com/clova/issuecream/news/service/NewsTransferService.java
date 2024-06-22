@@ -31,7 +31,7 @@ public class NewsTransferService {
 
     private final NewsBoardRepository newsBoardRepository;
 
-    @Scheduled(cron = "0 45 5,17 * * *")
+    @Scheduled(cron = "0 0 */3 * * *")
     @Transactional
     public void transNews() {
         log.info("데이터 이관시작!!!");

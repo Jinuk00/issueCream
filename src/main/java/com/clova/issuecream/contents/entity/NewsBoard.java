@@ -76,13 +76,13 @@ public class NewsBoard {
 
     public void setKeyWords(String[] keyWords) {
         if (keyWords.length >= 1 && keyWords[0].length()<=10) {
-            keyWord1 = keyWords[0];
+            keyWord1 = keyWords[0].replaceAll("#","");
         }
         if (keyWords.length >= 2 && keyWords[1].length()<=10) {
-            keyWord2 = keyWords[1];
+            keyWord2 = keyWords[1].replaceAll("#","");
         }
         if (keyWords.length >= 3 && keyWords[2].length()<=10) {
-            keyWord3 = keyWords[2];
+            keyWord3 = keyWords[2].replaceAll("#","");
         }
     }
 
