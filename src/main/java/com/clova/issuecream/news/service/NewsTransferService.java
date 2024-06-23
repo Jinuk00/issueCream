@@ -48,8 +48,10 @@ public class NewsTransferService {
                 .contains("오전") ? "am" : "pm";
         LocalDate today = LocalDate.now();
         String todayDate = today.format(DateTimeFormatter.ofPattern("yyyy_MM_dd"));
-
-        String fileName = fileNames.stream().filter(i -> i.contains(todayDate + "_" + timePart))
+        String findFileName = todayDate + "_" + timePart;
+        log.info("찾을 파일 명 {}", findFileName);
+        log.info("파일 리스트 {}", fileNames);
+        String fileName = fileNames.stream().filter(i -> i.contains(findFileName))
                 .findAny().orElse("");
 
         List<NewsBoard> saveList = new ArrayList<>();
