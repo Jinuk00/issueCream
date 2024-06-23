@@ -11,7 +11,7 @@ function LoginSuccess(){
         const now = new Date();
         const authToken ={
             token: accessToken,
-            expire: now.getTime() * 60 * 60 * 1000,
+            expire: now.getTime() + 60 * 60 * 1000,
         }
         if (accessToken) {
             localStorage.setItem("access", JSON.stringify(authToken));

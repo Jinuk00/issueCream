@@ -10,6 +10,8 @@ export const getToken = () => {
 
     const item = JSON.parse(itemStr);
     const now = new Date();
+    console.log("토큰 시간", item.expire);
+    console.log("현재 시간", now.getTime());
 
     // 만료 시간이 지나면 토큰 삭제
     if (now.getTime() > item.expire) {
