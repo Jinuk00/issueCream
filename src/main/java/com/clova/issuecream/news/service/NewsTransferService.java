@@ -63,53 +63,52 @@ public class NewsTransferService {
         String findFileName = todayDate + "_" + timePart;
         log.info("찾을 파일 명 {}", findFileName);
         log.info("파일 리스트 {}", fileList);
-        String fileName = String.valueOf(fileList.stream().filter(i -> i.getFileName().toString().contains(findFileName))
-                .findAny().orElse(null));
+        Path fileName = fileList.stream().filter(i -> i.getFileName().toString().contains(findFileName))
+                .findAny().orElse(null);
 
-        log.info("찾은 파일 {}", fileName);
+        log.info("찾은 파일 {}", fileName != null ? fileName.toString() : "null");
 
-//        List<NewsBoard> saveList = new ArrayList<>();
-//        if (!fileName.isEmpty()) {
-//            ClassPathResource resource = new ClassPathResource("news/" + fileName);
-//            ObjectMapper objectMapper = new ObjectMapper();
-//
-//            List<NewsTransDto> newsTransDtos;
-//            try {
-//                newsTransDtos = Arrays.asList(objectMapper.readValue(resource.getInputStream(), NewsTransDto[].class));
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//            for (NewsTransDto dto : newsTransDtos) {
-//                NewsBoard newsBoard = NewsBoard.builder()
-//                        .categoryCode(CategoryCode.transByName(dto.getCategory())).build();
-//                //요약형
-//                String content = dto.getContent_smry();
-//
-//                //키워드 작업
-//                content = makeKeyWords(newsBoard, content, NewsType.요약형);
-//
-//                //메인 컨텐츠 분리 작업
-//                String newsContent = makeNewsContent(content, NewsType.요약형);
-//
-//                //대화형
-//                String chatContent = dto.getContent_chat();
-//
-//                //키워드 작업
-//                chatContent = makeKeyWords(newsBoard, chatContent, NewsType.대화형);
-//
-//                //메인 컨텐츠 분리 작업
-//                String newsChatContent = makeNewsContent(chatContent, NewsType.대화형);
-//
-//                newsBoard.createContent(dto.getTitle(), newsContent, newsChatContent);
-//                newsBoard.setNewsDate(fileName.substring(0, 13).replaceAll("_", ""));
-//                newsBoard.checkKeywords();
-//                if (newsBoard.getKeyWord1() == null && newsBoard.getChatKeyWord1() == null) {
-//                    continue;
-//                }
-//                saveList.add(newsBoard);
-//            }
-//            newsBoardRepository.saveAll(saveList);
-//        }
+        List<NewsBoard> saveList = new ArrayList<>();
+        if (fileName!=null) {
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            List<NewsTransDto> newsTransDtos;
+            try {
+                newsTransDtos = Arrays.asList(objectMapper.readValue(fileName.toFile(), NewsTransDto[].class));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            for (NewsTransDto dto : newsTransDtos) {
+                NewsBoard newsBoard = NewsBoard.builder()
+                        .categoryCode(CategoryCode.transByName(dto.getCategory())).build();
+                //요약형
+                String content = dto.getContent_smry();
+
+                //키워드 작업
+                content = makeKeyWords(newsBoard, content, NewsType.요약형);
+
+                //메인 컨텐츠 분리 작업
+                String newsContent = makeNewsContent(content, NewsType.요약형);
+
+                //대화형
+                String chatContent = dto.getContent_chat();
+
+                //키워드 작업
+                chatContent = makeKeyWords(newsBoard, chatContent, NewsType.대화형);
+
+                //메인 컨텐츠 분리 작업
+                String newsChatContent = makeNewsContent(chatContent, NewsType.대화형);
+
+                newsBoard.createContent(dto.getTitle(), newsContent, newsChatContent);
+                newsBoard.setNewsDate(fileName.getFileName().toString().substring(0, 13).replaceAll("_", ""));
+                newsBoard.checkKeywords();
+                if (newsBoard.getKeyWord1() == null && newsBoard.getChatKeyWord1() == null) {
+                    continue;
+                }
+                saveList.add(newsBoard);
+            }
+            newsBoardRepository.saveAll(saveList);
+        }
     }
 
     private String makeKeyWords(NewsBoard newsBoard, String content, NewsType newsType) {
