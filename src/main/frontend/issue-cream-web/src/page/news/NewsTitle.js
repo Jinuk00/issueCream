@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
+import emojiDictionary from "emoji-dictionary";
 
 function NewsTitle(props) {
 
@@ -20,6 +21,15 @@ function NewsTitle(props) {
         }
     }
 
+    const titleEmoji= (text)=>{
+        return text.split('|||\\').map(part => {
+            return part.replace(/U([0-9A-Fa-f]{8})/g, (match, p1) => {
+                const emojiUnicode = `\\u${p1}`;
+                return emojiDictionary.getUnicode(emojiUnicode) || String.fromCodePoint(parseInt(p1, 16));
+            });
+        }).join('');
+    }
+
     return (
         <>
             {
@@ -34,7 +44,7 @@ function NewsTitle(props) {
                             <div className="flex mr1" style={{textAlign: 'left'}}>
                                 <img src={ImageSource(item.categoryCode)} className="test-image mr4"/>
                                 <Link to={'/newsDetail/' + item.id}
-                                      className="mr5 text-center link">{item.newsTitle}</Link>
+                                      className="mr5 text-center link">{titleEmoji(item.newsTitle)}</Link>
                             </div>
                         </div>
                         {index === props.news.length - 1 && (

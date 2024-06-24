@@ -108,6 +108,15 @@ function NewsDetail(){
         ));
     };
 
+    const titleEmoji= (text)=>{
+        return text.split('|||\\').map(part => {
+            return part.replace(/U([0-9A-Fa-f]{8})/g, (match, p1) => {
+                const emojiUnicode = `\\u${p1}`;
+                return emojiDictionary.getUnicode(emojiUnicode) || String.fromCodePoint(parseInt(p1, 16));
+            });
+        }).join('');
+    }
+
     return (
             <>
                 <PageHeader/>
@@ -118,7 +127,7 @@ function NewsDetail(){
                     </div>
                 </div>
                 <div className="base-blue2 main_padding pt2" style={{marginBottom: '2rem'}}>
-                    {newsInfo && newsInfo.newsTitle}
+                    {newsInfo && titleEmoji(newsInfo.newsTitle)}
                     <div className="pb3 text-color2">
                         {newsInfo && newsInfo.newsDate}
                     </div>
