@@ -12,7 +12,6 @@ export const getToken = () => {
 
     // 만료 시간이 지나면 토큰 삭제
     if (now.getTime() > item.expire) {
-        console.log("삭제");
         localStorage.removeItem('access');
         return null;
     }

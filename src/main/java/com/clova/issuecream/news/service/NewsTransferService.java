@@ -52,9 +52,8 @@ public class NewsTransferService {
                 .format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss a"))
                 .contains("오전") ? "am" : "pm";
         LocalDate today = LocalDate.now();
-//        String todayDate = today.format(DateTimeFormatter.ofPattern("yyyy_MM_dd"));
-//        String findFileName = todayDate + "_" + timePart;
-        String findFileName = "2024_06_25_am_smry_chat";
+        String todayDate = today.format(DateTimeFormatter.ofPattern("yyyy_MM_dd"));
+        String findFileName = todayDate + "_" + timePart;
         log.info("찾을 파일 명 {}", findFileName);
         log.info("파일 리스트 {}", fileList);
         Path fileName = fileList.stream().filter(i -> i.getFileName().toString().contains(findFileName))
