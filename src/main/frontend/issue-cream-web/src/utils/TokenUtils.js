@@ -2,7 +2,6 @@
 
 export const getToken = () => {
     const itemStr = localStorage.getItem('access');
-    console.log("토큰 검사");
     // 토큰이 존재하지 않으면 null 반환
     if (!itemStr) {
         return null;
@@ -10,8 +9,6 @@ export const getToken = () => {
 
     const item = JSON.parse(itemStr);
     const now = new Date();
-    console.log("토큰 시간", item.expire);
-    console.log("현재 시간", now.getTime());
 
     // 만료 시간이 지나면 토큰 삭제
     if (now.getTime() > item.expire) {

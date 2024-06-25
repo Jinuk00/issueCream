@@ -35,32 +35,26 @@ public class NewsTransferService {
 
     private final NewsBoardRepository newsBoardRepository;
 
-    private static final String NEWS_DIRECTORY = "src/main/resources/news";
+    private static final String NEWS_DIRECTORY = "src/main/resources/news/";
 
 
     @Scheduled(cron = "0 0 */3 * * *")
     @Transactional
     public void transNews() {
         log.info("데이터 이관시작!!!");
-//        ClassPathResource dir = new ClassPathResource("news");
         List<Path> fileList;
         try {
             fileList = getFileList(NEWS_DIRECTORY);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-//        try (BufferedReader reader = new BufferedReader(new InputStreamReader(dir.getInputStream()))) {
-//            fileNames = reader.lines().collect(Collectors.toList());
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-
         String timePart = LocalDateTime.now()
                 .format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss a"))
                 .contains("오전") ? "am" : "pm";
         LocalDate today = LocalDate.now();
-        String todayDate = today.format(DateTimeFormatter.ofPattern("yyyy_MM_dd"));
-        String findFileName = todayDate + "_" + timePart;
+//        String todayDate = today.format(DateTimeFormatter.ofPattern("yyyy_MM_dd"));
+//        String findFileName = todayDate + "_" + timePart;
+        String findFileName = "2024_06_25_am_smry_chat";
         log.info("찾을 파일 명 {}", findFileName);
         log.info("파일 리스트 {}", fileList);
         Path fileName = fileList.stream().filter(i -> i.getFileName().toString().contains(findFileName))
@@ -81,6 +75,7 @@ public class NewsTransferService {
             for (NewsTransDto dto : newsTransDtos) {
                 NewsBoard newsBoard = NewsBoard.builder()
                         .categoryCode(CategoryCode.transByName(dto.getCategory())).build();
+                log.info("작동 값 {}", dto);
                 //요약형
                 String content = dto.getContent_smry();
 
@@ -137,17 +132,35 @@ public class NewsTransferService {
         return content;
     }
 
+    private String deleteContentEndTitle(String content) {
+        int titleStartIndex = content.indexOf("제목");
+        if (titleStartIndex > -1) {
+            return content.substring(0, titleStartIndex);
+        }
+        return content;
+    }
+
     private String makeNewsContent(String content, NewsType newsType) {
         String mainContent = deleteContentTitle(content);
+        if (mainContent.startsWith("\n")) {
+            mainContent = mainContent.substring(1);
+        }
         String[] splitContent = mainContent.split("\n");
         StringBuilder newsContent = new StringBuilder();
+        if (mainContent.equals("")) {
+            String endTitle = deleteContentEndTitle(content);
+            splitContent = endTitle.split("\n");
+        }
         for (String s : splitContent) {
             if (s.equals("")) {
                 continue;
             }
             newsContent.append(s).append(newsType.equals(NewsType.요약형) ? "\n\n" : "\n");
         }
-        newsContent.deleteCharAt(newsContent.lastIndexOf("\n"));
+        int index = newsContent.lastIndexOf("\n");
+        if (index > -1) {
+            newsContent.deleteCharAt(index);
+        }
         return newsContent.toString();
     }
 

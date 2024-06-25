@@ -20,4 +20,11 @@ class NewsTransferServiceTest {
     void test() {
         newsTransferService.transNews();
     }
+
+    @Test
+    void test2() {
+        String format = LocalDateTime.now()
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss a"));
+        System.out.println(format);
+    }
 }
