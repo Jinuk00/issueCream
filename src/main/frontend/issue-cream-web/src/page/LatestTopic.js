@@ -1,5 +1,6 @@
 import React, { useState, useEffect ,useRef} from 'react';
 import {useNavigate} from "react-router-dom";
+import emojiDictionary from "emoji-dictionary";
 function LatestTopic(props){
     const [currentIndex, setCurrentIndex] = useState(0);
     const [manualChange, setManualChange] = useState(false);
@@ -47,6 +48,15 @@ function LatestTopic(props){
         navigate(`/newsDetail/${id}`);
     }
 
+    const titleEmoji= (text)=>{
+        return text.split('|||\\').map(part => {
+            return part.replace(/U([0-9A-Fa-f]{8})/g, (match, p1) => {
+                const emojiUnicode = `\\u${p1}`;
+                return emojiDictionary.getUnicode(emojiUnicode) || String.fromCodePoint(parseInt(p1, 16));
+            });
+        }).join('');
+    }
+
     return (
         <div className="topic-background pb1">
             <div className="pt1 pl1 text-left text-color font2">
@@ -56,7 +66,7 @@ function LatestTopic(props){
                 <div className="slider"
                      style={{transform: `translateX(-${currentIndex * 100}%)`, transition: 'transform 1.5s ease'}}>
                     {props.topics.map((item, index) => (
-                        <div className="slide text-left btn" key={index} onClick={()=>gotoNewsDetail(item.id)}>{item.newsTitle}</div>
+                        <div className="slide text-left btn" key={index} onClick={()=>gotoNewsDetail(item.id)}>{titleEmoji(item.newsTitle)}</div>
                     ))}
                 </div>
                 <div className="flex">
