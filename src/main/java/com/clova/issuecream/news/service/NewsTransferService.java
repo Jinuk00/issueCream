@@ -48,12 +48,13 @@ public class NewsTransferService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        String timePart = LocalDateTime.now()
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss a"))
-                .contains("오전") ? "am" : "pm";
-        LocalDate today = LocalDate.now();
-        String todayDate = today.format(DateTimeFormatter.ofPattern("yyyy_MM_dd"));
-        String findFileName = todayDate + "_" + timePart;
+//        String timePart = LocalDateTime.now()
+//                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss a"))
+//                .contains("오전") ? "am" : "pm";
+//        LocalDate today = LocalDate.now();
+//        String todayDate = today.format(DateTimeFormatter.ofPattern("yyyy_MM_dd"));
+//        String findFileName = todayDate + "_" + timePart;
+        String findFileName = "2024_06_27";
         log.info("찾을 파일 명 {}", findFileName);
         log.info("파일 리스트 {}", fileList);
         Path fileName = fileList.stream().filter(i -> i.getFileName().toString().contains(findFileName))
@@ -124,7 +125,7 @@ public class NewsTransferService {
     private String deleteContentTitle(String content) {
         int titleStartIndex = content.indexOf("제목");
         int titleEndIndex = content.indexOf("\n", titleStartIndex);
-        if (titleStartIndex > -1) {
+        if (titleStartIndex > -1 && titleEndIndex > -1) {
             String mainContent = content.substring(titleEndIndex);
             return mainContent.substring(mainContent.indexOf("\n") + 1);
         }
